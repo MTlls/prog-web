@@ -164,7 +164,7 @@ if __FILE__ == $0
             # contatena arg1 + all_args
             # retorna todos os campos em uma variavel
             campos = get_args([arg] + ARGV)
-            puts campos
+            
             # Cria e salva a pessoa com os campos
             livro = Livro.criar(campos)
             if !livro.nil?
