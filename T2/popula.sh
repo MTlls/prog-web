@@ -10,6 +10,8 @@ echo
 # Imprime a tabela pessoas
 ./alteraTabelas.sh lista pessoas
 
+echo
+
 # Populando a tabela autores
 ./alteraTabelas.sh insere autores nome="Machado de Assis" nacionalidade="Brasileiro"
 ./alteraTabelas.sh insere autores nome="João Guimarães Rosa" nacionalidade="Brasileiro"

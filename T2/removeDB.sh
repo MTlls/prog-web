@@ -8,5 +8,5 @@ else
     echo "Removendo o banco de dados..."
 
     rm Biblioteca.sqlite3*
-    echo "Conluído."
+    echo "Concluído."
 fi
