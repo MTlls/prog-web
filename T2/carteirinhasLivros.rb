@@ -10,6 +10,19 @@ ActiveRecord::Base.establish_connection :adapter => "sqlite3",
 class CarteirinhasLivros < ActiveRecord::Base;
     # CRUD
     def self.emprestar(carteirinha, livro)
+
+        # verifica se a carteirinha pode emprestar
+        if !carteirinha.podeEmprestar
+            puts "Carteirinha não pode emprestar"
+            exit
+            return
+        # verifica se o livro ja nao foi emprestado
+        elsif livro.carteirinhas.count == livro.quantidade
+            puts "Livro indisponível"
+            exit
+            return
+        end
+
         carteirinha.livros << livro
         Livro.emprestar(livro)
     end
@@ -174,7 +187,7 @@ if __FILE__ == $0
                 puts "carteirinha ou livro não emprestou/foi emprestado"
             else
                 CarteirinhasLivros.devolver(carteirinha, livro)
-                puts "Pessoa excluída com sucesso!"
+                puts "#{livro.titulo} devolvido com sucesso!"
             end
         end     
     end

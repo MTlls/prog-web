@@ -62,21 +62,22 @@ class Carteirinha < ActiveRecord::Base;
     end
 
     def self.atualizar(chave, valor, campos)
-        carteirinha = self.where({chave => valor})
+        carteirinhas = self.where({chave => valor})
         
         # verifica se os objetos foram encontrados
-        if carteirinha.empty?
+        if carteirinhas.empty?
             puts "Não foi encontrada nenhuma carteirinha com o id informado"
             exit
             return
         end
         
         # atualiza para cada carteirinha
-        carteirinha.each do |carteirinha|
+        carteirinhas.each do |carteirinha|
             # esse loop verifica se o campo nao eh vazio, se nao for, atualiza
             campos.each do |campo, valor_campo|
                 if !valor_campo.nil? && !valor_campo.empty?
-                    carteirinha.update({campo => valor_campo})
+                    # essa inserção de campo é feita desse modo para que nao haja validações (validate dessa classe impede o save)
+                    carteirinha.update_attribute(campo, valor_campo)
                 end
             end
         end
@@ -119,26 +120,21 @@ class Carteirinha < ActiveRecord::Base;
         
 end
 
-def get_args(args)
+def get_args(all_args)
     # cria um hash vazio
-    campos = {}
+    args = { podeEmprestar: nil}
 
     # percorre os argumentos
-    args.each do |arg|
-        # verifica se o argumento é uma chave
-        if arg.include?("--")
-            # pega a chave
-            chave = arg.gsub("--", "")
-            campos[chave.to_sym] = nil
-        else
-            # pega o valor
-            campos[chave.to_sym] = arg
+    all_args.each do |arg|
+        if arg.start_with?("podeEmprestar=") 
+            args[:podeEmprestar] = arg["podeEmprestar=".length..-1]
+        elsif arg.start_with?("disponibilidade=")
+            args[:podeEmprestar] = arg["disponibilidade=".length..-1]
         end
     end
 
-    return campos
+    return args
 end
-
 
 opts = GetoptLong.new(
   [ '--insere', GetoptLong::REQUIRED_ARGUMENT ],
