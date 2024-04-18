@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="trabalhos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto&family=Roboto+Mono:wght@500&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>Index</title>
+</head>
+
+<body data-aos="none">
+    <header class="aba">
+        <h1>Matheus Telles Batista</h1>
+        <img src="./perfil.png" alt="Imagem de Matheus Telles" id="perfil">
+        <nav class="botoes">
+            <a class="link-navegacao" href="./index.html">
+                <button class="botao-inicio" type="button">
+                    Início
+                </button>
+            </a>
+            <a class="link-navegacao" href="./trabalhos.html">
+                <button class="botao-trabalhos" type="button">
+                    Trabalhos
+                </button>
+            </a>
+        </nav>
+    </header>
+    <main>
+        <div class="bloco-principal">
+
+            <div class="trabalhos-aba">
+                <div class="estilizado-trabalhos">
+                    <div class="linha-preta-l"> </div>
+                    <h2>TRABALHOS</h2>
+                    <div class="linha-preta-r"> </div>
+                </div>
+                <p data-aos="zoom-in">Aqui tenho alguns dos meus projetos desenvolvidos ao longo do curso. Caso se
+                    interesse
+                    por algum, basta
+                    clicar no título para ser redirecionado à sua página no GitHub.</p>
+            </div>
+        </div>
+
+
+        <div class="cards" data-aos="fade-left" data-aos-duration="2000">
+            <div class="column">
+                <div class="card">
+                    <a href="https://github.com/MTlls/Monte-Carlo">
+                        <button class="titulo-projeto">
+                            <h3>Monte-Carlo</h3>
+                        </button>
+                    </a>
+                    <div class="texto-projeto">
+                        <p>
+                            Este é um projeto da matéria de Introdução à Computação Científica.
+                        </p>
+                        <p>
+                            Foi implementado dois métodos para o cálculo de integrais – Monte Carlo e o método dos
+                            retângulos. Os dois são usados para o cálculo da função de Styblinski-Tang.
+                        </p>
+                        <p>
+                            O método de Integração de Monte Carlo utiliza números aleatórios para estimar numericamente
+                            soluções de problemas matemáticos complexos, avaliando a função em pontos. Diferente do
+                            método
+                            dos retângulos, que divide a área sob a função em retângulos e aproxima a integral pela soma
+                            de
+                            suas áreas.
+                        </p>
+                        <p>
+                            No arquivo README do projeto, foram comparados os dois métodos, explorando suas
+                            características
+                            e
+                            eficácia na resolução da função de Styblinski-Tang.</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="column">
+                <div class="card">
+                    <a href="https://github.com/MTlls/Ajuste-de-Curvas">
+                        <button class="titulo-projeto" type="button">
+                            <h3>Ajuste-de-Curvas</h3>
+                        </button>
+                    </a>
+                    </button>
+                    <div class="texto-projeto">
+                        <p>
+                            Este é um projeto da matéria de Introdução à Computação Científica.
+                        </p>
+                        <p>O intuito do trabalho é realizar o método dos mínimos quadrados (regressão linear) com
+                            intervalos
+                            de dupla precisão. Cada output apresenta os coeficientes (um intervalo de dupla precisão) do
+                            polinômio encontrado.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <a href="https://github.com/MTlls/alocador-dinamico">
+                        <button class="titulo-projeto" type="button">
+                            <h3>Alocador dinâmico</h3>
+                        </button>
+                    </a>
+                    </button>
+                    <div class="texto-projeto">
+                        <p>
+                            Este projeto foi desenvolvido na matéria de Software Básico.
+                        </p>
+                        <p>
+                            O intuito principal deste trabalho é criar um alocador dinâmico de memória (um malloc) em
+                            assembly. Seguindo a política de first fit.
+                        </p>
+                        <p>
+                            Utiliza vários conceitos abordados no decorrer da matéria, principalmente as áreas dos
+                            processos
+                            (heap, bss, etc) e registros de ativação.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+        document.addEventListener("DOMContentLoaded", function () {
+            var img = new Image();
+            img.src = document.getElementsByClassName("perfil").src;
+        });
+
+    </script>
+</body>
+
+</html>

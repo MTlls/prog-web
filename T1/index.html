@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>Index</title>
+</head>
+
+<body>
+    <header class="aba">
+        <h1>Matheus Telles Batista</h1>
+        <img src="./perfil.png" alt="Imagem de Matheus Telles" id="perfil">
+        <nav class="botoes">
+            <a class="link-navegacao" href="./index.html">
+                <button class="botao-inicio" type="button">
+                    Início
+                </button>
+            </a>
+            <a class="link-navegacao" href="./trabalhos.html">
+                <button class="botao-trabalhos" type="button">
+                    Trabalhos
+                </button>
+            </a>
+        </nav>
+    </header>
+    <main class="bloco-principal">
+        <div class="card" data-aos="fade-left" data-aos-duration="1000">
+            <h1>Olá! Bem vindo a minha página!</h1>
+        </div>
+        <div class="conteudo-texto" data-aos="fade-left" data-aos-duration="2000">
+            <p> <span class="semi-bold">Conhecimentos:</span> Java, Python, C, SQL, JavaScript, Assembly.</p>
+            <p>Atualmente participando do projeto de Iniciação Científica <span class="medium">German-Brazilian
+                    Newspapers</span> (GBN-DBP), focado no reconhecimento de fontes alemãs providas de jornais antigos,
+                através de deep learning.</p>
+            <p>Tenho um grande interesse por programação competitiva, algorítmos e recentemente descobri que também
+                adoro computação teórica!</p>
+            <p>Para além da universidade, também me interesso por: Game of Thrones, animações e tenho uma capacidade
+                incrível de reconhecer musicas/vozes (sério)!</p>
+            <p>Caso tenha interesse/curiosidade, tenho alguns trabalhos feitos ao decorrer do curso de bacharelado e
+                todos constam no meu GitHub.</p>
+            <p><a class="link-curriculo" href="./curriculum_vitae.pdf">Clique aqui</a> para acessar o meu currículo
+                completo</p>
+        </div>
+        <footer class="link-sites">
+            <p>
+                <a class="link-site"
+                    href="https://www.linkedin.com/in/matheus-telles/"><link-element>LinkedIn</link-element></a> |
+                <a class="link-site" href="https://github.com/MTlls"> <link-element>GitHub</link-element></a>
+            </p>
+        </footer>
+    </main>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+        document.addEventListener("DOMContentLoaded", function () {
+            var img = new Image();
+            img.src = document.getElementsByClassName("perfil").src;
+        });
+
+    </script>
+</body>
+
+</html>
