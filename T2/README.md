@@ -156,3 +156,7 @@ Para realizar um empréstimo, você precisa do "id" do livro e do "id" da cartei
 Isso irá associar o livro com "id" igual a 2 à carteirinha com "id" igual a 1, indicando que o livro foi emprestado.
 
 Lembre-se de substituir os valores "1" e "2" pelos "ids" corretos das pessoas e dos livros que você deseja utilizar.
+
+## Listagem
+
+Não foi realizada a listagem para um único elemento, ele sempre retorna toda a tabela (tirando no caso da tabela carteirinhasLivros).
