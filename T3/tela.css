@@ -1,0 +1,12 @@
+body { 
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(222, 223, 224);
+}
+
+#myCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Coloca o canvas atrás dos outros elementos */
+}    
