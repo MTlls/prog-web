@@ -206,10 +206,8 @@ function geraReta() {
 
     // criamos os pontos da reta na instância do canvasClass, para que possamos manipulá-los
     let ponto1 = new Ponto(x_inicial, y, "black");
-    let ponto2 = new Ponto((x_inicial + x_final) / 2, y, "black");
-    let ponto3 = new Ponto(x_final, y, "black");
+    let ponto2 = new Ponto(x_final, y, "black");
     new Linha(ponto1, ponto2, "blue");
-    new Linha(ponto2, ponto3, "blue");
 
     // desenhamos o caminho
     canvasClass.desenhaCaminho();
@@ -273,9 +271,15 @@ function achaCoeficientes(ponto1, ponto2) {
     // denominador
     let denominador = ((2 * sx2) - (sx * sx));
 
-    // aqui usamos a regra de cramer para resolver o sistema linear
-    let a = ((2 * sxy) - (sx * sy)) / denominador;
-    let b = (((sy) * (sx2)) - ((sx * sxy))) / denominador;
+    // se o denominador for 0, a reta é vertical, então o coeficiente angular é 1 e o linear é 0
+    let a = 1;
+    let b = 0;
+
+    if (denominador != 0) {
+        // aqui usamos a regra de cramer para resolver o sistema linear
+        a = ((2 * sxy) - (sx * sy)) / denominador;
+        b = (((sy) * (sx2)) - ((sx * sxy))) / denominador;
+    }
 
     // retornamos os coeficientes
     return [a, b];
@@ -427,7 +431,6 @@ class CanvasClass {
         var x = event.offsetX;
         var y = event.offsetY;
 
-        console.log("mouseX: " + x + " mouseY: " + y);
         canvasClass.moverPonto(pontoAntigo, { x: x, y: y, cor: "red" });
         pontoAntigo.cor = "red";
         this.atualizaPonto(pontoAntigo);
@@ -525,10 +528,9 @@ class CanvasClass {
             let dLuv = getDistance(l.u, l.v);
 
             // calcula com erro de 2 casas decimais
-            if (Math.abs(dpu + dpv - dLuv) < 1) {
-                console.log("Linha encontrada");
+            if (Math.abs(dpu + dpv - dLuv) < 1)
                 linha = l;
-            }
+
         });
 
         // caso a linha não seja encontrada
