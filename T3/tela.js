@@ -310,19 +310,13 @@ function achaClique(event) {
     });
 
     // verifica se o ponto clicado é um ponto né
+    // let pixel = canvas.getImageData(x - 3, y - 3, 10, 10).data;
+    // console.log(pixel);
     if (ponto) {
         return ["ponto", ponto];
-    } else {
-        // verifica se o pixel clicado não está em cima de uma linha, verificando a cor do pixel
-        let pixel = canvas.getImageData(x - 3, y - 3, 6, 6).data;
-
-        // verifica se algum pixel não é branco
-        if (pixel) {
-            // verifica se algum pixel não é branco
-            if (pixel.some(p => p != 0)) {
-                return ["linha", { x: x, y: y }];
-            }
-        }
+    } // se nao for um ponto, verifica se as coordenadas clicadas estão em cima de uma linha
+    else if(canvasClass.getLinha({ x: x, y: y })) {
+        return ["linha", { x: x, y: y }];
     }
 
     // caso não tenha clicado em nada
@@ -517,7 +511,7 @@ class CanvasClass {
         // procura a linha que contém o ponto clicado calculando a distancia de dois pontos
         let linhas = this.linhas.filter(l => {
             let [a, b] = achaCoeficientes(l.u, l.v);
-            return (Math.abs(f(a, b, coords.x) - coords.y) < 6) || (Math.abs(f(a, b, coords.x) - coords.y) > 6);
+            return (Math.abs(f(a, b, coords.x) - coords.y) < 6);
         });
 
         // pega a linha em que a distancia do ponto é menor
@@ -535,7 +529,6 @@ class CanvasClass {
 
         // caso a linha não seja encontrada
         if (!linha) {
-            console.error("Linha não encontrada");
             return;
         }
 
