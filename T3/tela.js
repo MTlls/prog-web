@@ -262,24 +262,21 @@ function achaCoeficientes(ponto1, ponto2) {
     let x2 = ponto2.x;
     let y2 = ponto2.y;
 
-    // somatórios...
-    let sx = x1 + x2;
-    let sx2 = (x1 ** 2) + (x2 ** 2);
-    let sy = y1 + y2;
-    let sxy = (x1 * y1) + (x2 * y2);
-
-    // denominador
-    let denominador = ((2 * sx2) - (sx * sx));
-
-    // se o denominador for 0, a reta é vertical, então o coeficiente angular é 1 e o linear é 0
-    let a = 1;
-    let b = 0;
-
-    if (denominador != 0) {
-        // aqui usamos a regra de cramer para resolver o sistema linear
-        a = ((2 * sxy) - (sx * sy)) / denominador;
-        b = (((sy) * (sx2)) - ((sx * sxy))) / denominador;
+    // se os x forem proximos o suficiente, a reta é vertical
+    if (Math.abs(x2 - x1) < 0.0001) {
+        return [NaN, NaN];
     }
+
+    // calculamos o coeficiente angular
+    let a = (y2 - y1) / (x2 - x1);
+
+    // se o coeficiente angular for infinito, a reta é vertical
+    if (a === Infinity) {
+        return [NaN, NaN];
+    }
+
+    // calculamos o coeficiente linear
+    let b = y1 - a * x1 ;
 
     // retornamos os coeficientes
     return [a, b];
@@ -315,7 +312,7 @@ function achaClique(event) {
     if (ponto) {
         return ["ponto", ponto];
     } // se nao for um ponto, verifica se as coordenadas clicadas estão em cima de uma linha
-    else if(canvasClass.getLinha({ x: x, y: y })) {
+    else if (canvasClass.getLinha({ x: x, y: y })) {
         return ["linha", { x: x, y: y }];
     }
 
@@ -511,6 +508,9 @@ class CanvasClass {
         // procura a linha que contém o ponto clicado calculando a distancia de dois pontos
         let linhas = this.linhas.filter(l => {
             let [a, b] = achaCoeficientes(l.u, l.v);
+            // se for uma reta vertical, a e b são NaN e apenas verificamos se a coordenada x do ponto é igual a x da reta
+            if(isNaN(a) && isNaN(b)) 
+                return (Math.abs(l.u.x - coords.x) < 6 && Math.abs(l.v.x - coords.x) < 6);
             return (Math.abs(f(a, b, coords.x) - coords.y) < 6);
         });
 
