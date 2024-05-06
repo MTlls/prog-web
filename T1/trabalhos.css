@@ -1,49 +1,32 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: #ECE7E7;
     display: grid;
     grid-template-columns: 1fr 3fr;
     margin: 0;
     align-items: start;
+    overflow-x: hidden;
 }
 
-.aba {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    opacity: 100%;
-    background: #FFF59A;
-    border-right: 1pt solid #d2d2d2;
-    position: sticky;
-    overflow-y: scroll;
-    top: 0;
-    height: 100vh;
-    text-align: center;
-}
-.aba img {
-    border-radius: 50%;
-    max-width: 200px;
-    min-height: 180px;
-    margin: 0 auto 0 auto;
-}
-
-.aba h1 {
-    padding: 10% 0 0 0;
+h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: xx-large;
+    font-weight: 600;
+    margin: 1vw;
 }
 
 .botoes {
-	display: flex;
-	flex-direction: column;
-	gap: 8%;
-	left: 63px;
-	color: #000;
-	text-decoration: none;
-	font-size: 1.5em;
-	font-weight: bold;
-	align-self: center;
-	text-align: center;
-	gap: 0.5em;
-	margin-top: 7%;
+    display: flex;
+    flex-direction: column;
+    gap: 8%;
+    left: 0;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    align-self: center;
+    text-align: center;
+    gap: 0.5em;
+    margin-top: 7%;
 }
 
 a {
@@ -51,31 +34,12 @@ a {
     text-decoration: none;
 }
 
-.botao-inicio {
-    width: 9em;
-    height: 40px;
-    border-radius: 10px;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.botao-trabalhos {
-    width: 9em;
-    height: 40px;
-    border-radius: 10px;
-    align-items: center;
-    /* Adicionado para centralizar o texto verticalmente */
-    justify-content: center;
-    text-align: center;
-    display: flex;
-}
 
 button {
     all: unset;
 }
 
-button:active {
+button:active:hover {
     border: 1px solid #000;
 }
 
@@ -96,68 +60,60 @@ button:active {
     border: 6px solid #D9D9D9;
 }
 
-.cards {
-    display: flex;
-    justify-content: center;
-    margin-top: 75px;
-    margin-bottom: 2%;
+#cards {
+    column-count: 2;
+    column-gap: 5%;
+    padding: 2vw;
 }
 
-.card {
+#card {
     display: flex;
     flex-direction: column;
     position: relative;
-    margin: 5%;
+    margin: 0% 0% 4% 0vh;
+    break-inside: avoid;
+    min-height: fit-content;
+    justify-content: center;
+    align-items: center;
 }
 
 .column {
-	flex: 1;
-	padding: 0%;
-	gap: 20pt;
-	display: flex;
-	flex-direction: column;
-}
-
-.bloco-principal {
-    position: relative;
+    flex: 1;
+    padding: 0%;
+    gap: 20pt;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 100%;
-    margin-top: 51px;
 }
 
-.titulo-projeto {
-    background-color: #41928d;
+
+#titulo-projeto {
+    background-color: #5d42ff;
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    width: auto;
-    height: auto;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    position: absolute;
-    top: -55px;
-    left: 6%;
-    z-index: 1;
-    padding: 0px 4%;
+    box-shadow: inset 4px -5px 0px rgb(0 0 0 / 32%);
+    position: relative;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
 }
 
-.titulo-projeto h3 {
+#card a {
+    max-width: 90%;
+}
+
+
+#titulo-projeto h3 {
     font-family: 'Roboto Mono', monospace;
     font-size: 19pt;
 }
 
 .texto-projeto {
-	font-family: 'Inter', sans-serif;
-	background-color: #D9D9D9;
-	border-radius: 10px;
-	align-self: center;
-	padding: 33px 15px 29px;
-	/* margin: 0px 43px; */
-	line-height: 35px;
+    font-family: 'Inter', sans-serif;
+    background-color: #d1c9ff;
+    border-radius: 10px;
+    align-self: center;
+    padding: 33px 15px 29px;
+    /* margin: 0px 43px; */
+    line-height: 35px;
 }
 
 .texto-projeto p {
@@ -201,6 +157,13 @@ button:active {
     font-weight: 800;
 }
 
+#conteudo {
+    padding: 8vh 0vh 5vh 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    width: 75vw;
+}
 
 @media (max-width: 600px) {
 
@@ -215,6 +178,10 @@ button:active {
         font-weight: 800;
     }
 
+    .bloco-principal {
+        margin-top: 4vh;
+    }
+
     .trabalhos-aba p {
         font-family: 'Inter';
         font-size: 11pt;
@@ -231,11 +198,11 @@ button:active {
 
     .texto-projeto {
         font-family: 'Inter', sans-serif;
-        background-color: #D9D9D9;
+        background-color: #bfb5ff;
         border-radius: 10px;
         align-self: center;
-        padding: 18pt 10pt;
-        margin: 0px 18pt;
+        padding: 4pt 10pt;
+        margin: 0pt 18pt;
         line-height: 35px;
     }
 
@@ -253,136 +220,39 @@ button:active {
         line-height: 18pt;
     }
 
+    #titulo-projeto {
+        left: 0;
+    }
 
-    .titulo-projeto h3 {
+    #titulo-projeto h3 {
         font-family: 'Roboto Mono', monospace;
         font-size: 13pt;
+        word-wrap: break-word;
+        /* Quebra palavras longas para a próxima linha */
+        overflow-wrap: break-word;
+        /* Quebra palavras longas para a próxima linha */
+        white-space: normal;
+        /* Permite que o texto quebre a linha conforme necessário */
     }
 
-    .titulo-projeto {
-        background-color: #41928d;
-        border-radius: 10px;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        width: auto;
-        height: 31pt;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-        position: absolute;
-        top: -23pt;
-        left: 25pt;
-        z-index: 1;
-        padding: 0px 4%;
-        font-size: 15pt;
+    #cards {
+        column-count: 1;
+        padding: 0;
     }
 
-
-    .cards {
-        height: auto;
-        width: 100%;
-        text-align: center;
-        align-items: center;
-        margin-top: 35pt;
+    #conteudo {
+        padding: 8vh 0vh 5vh 0;
         display: flex;
-        justify-content: center;
         flex-direction: column;
-        left: 0;
-        gap: 44pt;
-        margin-bottom: 2%;
-    }
-
-    .aba {
-        align-items: center;
-    }
-
-}
-
-@media (max-width: 720px) {
-    
-    .botoes {
-        left: auto;
-        align-self: center;
-        position: static;
-    }
-
-    .estilizado-trabalhos h2 {
-        font-size: 24px;
-        font-weight: 800;
-    }
-
-    .trabalhos-aba p {
-        font-family: 'Inter';
-        font-size: 11pt;
-        font-weight: 500;
-        /* margin-inline: 142px; */
-        background-color: #FFF59A;
-        border-radius: 10px;
-        padding: 10pt;
-        border: 4pt solid #D9D9D9;
-        margin-inline: 7pt;
-        margin-top: auto;
-        border-top: 0;
-    }
-
-
-    .texto-projeto {
-        font-family: 'Inter', sans-serif;
-        background-color: #D9D9D9;
-        border-radius: 10px;
-        align-self: center;
-        padding: 18pt 10pt;
-        margin: 0px 18pt;
-        line-height: 35px;
-    }
-
-    .texto-projeto p {
-        font-family: 'Inter', sans-serif;
-        font-style: normal;
-        text-align: justify;
-        font-weight: 200;
-        font-size: 11pt;
-        color: #000000;
-        margin-inline: 6pt;
-        text-indent: 10pt;
-        margin: 6pt 0pt;
-        text-align: center;
-        line-height: 18pt;
-    }
-
-
-    .titulo-projeto h3 {
-        font-family: 'Roboto Mono', monospace;
-        font-size: 13pt;
-    }
-
-    .titulo-projeto {
-        background-color: #41928d;
-        border-radius: 10px;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        gap: 0;
         width: auto;
-        height: 31pt;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-        position: absolute;
-        top: -23pt;
-        left: 25pt;
-        z-index: 1;
-        padding: 0px 4%;
-        font-size: 15pt;
     }
 
 
-    .aba {
+    #card {
         align-items: center;
-    }
-
-    .botoes {
-        left: 0;
-        align-self: center;
-        position: static;
 
     }
 }
+
+@media (max-width: 720px) {}

@@ -4,37 +4,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="trabalhos.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto&family=Roboto+Mono:wght@500&display=swap"
         rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="navBar.css">
     <title>Index</title>
 </head>
 
-<body data-aos="none">
-    <header class="aba">
+<body>
+    <nav data-aos="none" class="navbar navbar-expand-md navbar-light" style="background-color: #FFF59A;">
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <header class="apresentacao collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link lato-black" href="./index.html">Início</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link lato-black" href="./trabalhos.html">Trabalhos</a>
+                </li>
+            </ul>
+        </header>
+    </nav>
+    <header id="aba">
         <h1>Matheus Telles Batista</h1>
-        <img src="./perfil.png" alt="Imagem de Matheus Telles" id="perfil">
+        <img src="./perfil.png" id="perfil-aba" class="rounded-circle" alt="Imagem de Matheus Telles">
         <nav class="botoes">
-            <a class="link-navegacao" href="./index.html">
-                <button class="botao-inicio" type="button">
-                    Início
-                </button>
-            </a>
-            <a class="link-navegacao" href="./trabalhos.html">
-                <button class="botao-trabalhos" type="button">
-                    Trabalhos
-                </button>
-            </a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link link-navegacao" href="./index.html">
+                        Início
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-navegacao" href="./trabalhos.html">
+                        Trabalhos
+                    </a>
+                </li>
+            </ul>
         </nav>
     </header>
-    <main>
+    <main id="conteudo">
         <div class="bloco-principal">
 
             <div class="trabalhos-aba">
@@ -51,93 +75,116 @@
         </div>
 
 
-        <div class="cards" data-aos="fade-left" data-aos-duration="2000">
-            <div class="column">
-                <div class="card">
-                    <a href="https://github.com/MTlls/Monte-Carlo">
-                        <button class="titulo-projeto">
-                            <h3>Monte-Carlo</h3>
-                        </button>
-                    </a>
-                    <div class="texto-projeto">
-                        <p>
-                            Este é um projeto da matéria de Introdução à Computação Científica.
-                        </p>
-                        <p>
-                            Foi implementado dois métodos para o cálculo de integrais – Monte Carlo e o método dos
-                            retângulos. Os dois são usados para o cálculo da função de Styblinski-Tang.
-                        </p>
-                        <p>
-                            O método de Integração de Monte Carlo utiliza números aleatórios para estimar numericamente
-                            soluções de problemas matemáticos complexos, avaliando a função em pontos. Diferente do
-                            método
-                            dos retângulos, que divide a área sob a função em retângulos e aproxima a integral pela soma
-                            de
-                            suas áreas.
-                        </p>
-                        <p>
-                            No arquivo README do projeto, foram comparados os dois métodos, explorando suas
-                            características
-                            e
-                            eficácia na resolução da função de Styblinski-Tang.</p>
-                    </div>
+        <div id="cards" data-aos="fade-left" data-aos-duration="2000">
 
+            <div id="card">
+                <a href="https://github.com/MTlls/Monte-Carlo">
+                    <button id="titulo-projeto" class="btn btn-info" type="button">
+                        <h3>Monte-Carlo</h3>
+                    </button>
+                </a>
+                <div class="texto-projeto">
+                    <p>
+                        Este é um projeto da matéria de Introdução à Computação Científica.
+                    </p>
+                    <p>
+                        Foi implementado dois métodos para o cálculo de integrais – Monte Carlo e o método dos
+                        retângulos. Os dois são usados para o cálculo da função de Styblinski-Tang.
+                    </p>
+                    <p>
+                        O método de Integração de Monte Carlo utiliza números aleatórios para estimar numericamente
+                        soluções de problemas matemáticos complexos, avaliando a função em pontos. Diferente do
+                        método
+                        dos retângulos, que divide a área sob a função em retângulos e aproxima a integral pela soma
+                        de
+                        suas áreas.
+                    </p>
+                    <p>
+                        No arquivo README do projeto, foram comparados os dois métodos, explorando suas
+                        características
+                        e
+                        eficácia na resolução da função de Styblinski-Tang.</p>
+                </div>
+
+            </div>
+            <div id="card">
+                <a href="https://github.com/MTlls/Ajuste-de-Curvas">
+                    <button id="titulo-projeto" class="btn btn-info" type="button">
+                        <h3>Ajuste-de-Curvas</h3>
+                    </button>
+                </a>
+                </button>
+                <div class="texto-projeto">
+                    <p>
+                        Este é um projeto da matéria de Introdução à Computação Científica.
+                    </p>
+                    <p>O intuito do trabalho é realizar o método dos mínimos quadrados (regressão linear) com
+                        intervalos
+                        de dupla precisão. Cada output apresenta os coeficientes (um intervalo de dupla precisão) do
+                        polinômio encontrado.
+                    </p>
                 </div>
             </div>
-            <div class="column">
-                <div class="card">
-                    <a href="https://github.com/MTlls/Ajuste-de-Curvas">
-                        <button class="titulo-projeto" type="button">
-                            <h3>Ajuste-de-Curvas</h3>
-                        </button>
-                    </a>
-                    </button>
-                    <div class="texto-projeto">
-                        <p>
-                            Este é um projeto da matéria de Introdução à Computação Científica.
-                        </p>
-                        <p>O intuito do trabalho é realizar o método dos mínimos quadrados (regressão linear) com
-                            intervalos
-                            de dupla precisão. Cada output apresenta os coeficientes (um intervalo de dupla precisão) do
-                            polinômio encontrado.
-                        </p>
-                    </div>
-                </div>
 
-                <div class="card">
-                    <a href="https://github.com/MTlls/alocador-dinamico">
-                        <button class="titulo-projeto" type="button">
-                            <h3>Alocador dinâmico</h3>
-                        </button>
-                    </a>
+            <div id="card">
+                <a href="https://github.com/MTlls/alocador-dinamico">
+                    <button id="titulo-projeto" class="btn btn-info" type="button">
+                        <h3>Alocador dinâmico</h3>
                     </button>
-                    <div class="texto-projeto">
-                        <p>
-                            Este projeto foi desenvolvido na matéria de Software Básico.
-                        </p>
-                        <p>
-                            O intuito principal deste trabalho é criar um alocador dinâmico de memória (um malloc) em
-                            assembly. Seguindo a política de first fit.
-                        </p>
-                        <p>
-                            Utiliza vários conceitos abordados no decorrer da matéria, principalmente as áreas dos
-                            processos
-                            (heap, bss, etc) e registros de ativação.
-                        </p>
-                    </div>
+                </a>
+                </button>
+                <div class="texto-projeto">
+                    <p>
+                        Este projeto foi desenvolvido na matéria de Software Básico.
+                    </p>
+                    <p>
+                        O intuito principal deste trabalho é criar um alocador dinâmico de memória (um malloc) em
+                        assembly. Seguindo a política de first fit.
+                    </p>
+                    <p>
+                        Utiliza vários conceitos abordados no decorrer da matéria, principalmente as áreas dos
+                        processos
+                        (heap, bss, etc) e registros de ativação.
+                    </p>
+                </div>
+            </div>
+
+            <div id="card">
+                <a href="../T3/tela.html">
+                    <button id="titulo-projeto" class="btn btn-info" type="button">
+                        <h3>Processador de retas e polígonos</h3>
+                    </button>
+                </a>
+                </button>
+                <div class="texto-projeto">
+                    <p>
+                        Este projeto foi desenvolvido na matéria de Programação Web.
+                    </p>
+                    <p>
+                        O programa permite alterar retas e polígonos em um canvas HTML5. Ao abrir o link, uma reta é
+                        exibida, podendo ser movida ao pressionar o mouse. Clicando com o botão direito, a reta é
+                        dividida em duas partes.
+                    </p>
+                    <p>
+                        O programa permite criar polígonos de 3 a 8 lados, com manipulações semelhantes às das retas tanto nos lados quanto nos pontos.
+                    </p>
                 </div>
             </div>
         </div>
+        </div>
     </main>
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        AOS.init();
-        document.addEventListener("DOMContentLoaded", function () {
-            var img = new Image();
-            img.src = document.getElementsByClassName("perfil").src;
-        });
-
+        AOS.init({ disable: 'mobile' });
     </script>
 </body>
 
