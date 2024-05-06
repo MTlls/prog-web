@@ -77,12 +77,6 @@ button:active {
 
 
 @media (max-width: 600px) {
-    body {
-        display: flex;
-        flex-direction: column;
-        row-gap: 8vh;
-    }
-
     #aba {
         display: none;
     }

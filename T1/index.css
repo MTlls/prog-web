@@ -89,6 +89,12 @@ h1 {
 }
 /* Media query para telas menores, por exemplo, dispositivos móveis */
 @media (max-width: 600px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        row-gap: 8vh;
+    }
+
     /* Estilos base */
     .bloco-principal {
         /* background-color: green; */
