@@ -1,0 +1,618 @@
+{
+    "1": [
+        {
+            "codigo": "CI068",
+            "nome": "Circuitos Lógicos",
+            "periodo": 1
+        },
+        {
+            "codigo": "CI055",
+            "nome": "Algoritmos e Estruturas de Dados I",
+            "periodo": 1
+        },
+        {
+            "codigo": "CM046",
+            "nome": "Introdução à Álgebra",
+            "periodo": 1
+        },
+        {
+            "codigo": "CM045",
+            "nome": "Geometria Analítica I",
+            "periodo": 1
+        },
+        {
+            "codigo": "CM201",
+            "nome": "Cálculo Diferencial e Integral I",
+            "periodo": 1
+        }
+    ],
+    "2": [
+        {
+            "codigo": "CI210",
+            "nome": "Projetos Digitais e Microprocessadores",
+            "periodo": 2
+        },
+        {
+            "codigo": "CI056",
+            "nome": "Algoritmos e Estruturas de Dados II",
+            "periodo": 2
+        },
+        {
+            "codigo": "CI067",
+            "nome": "Oficina de Computação",
+            "periodo": 2
+        },
+        {
+            "codigo": "CM005",
+            "nome": "Álgebra Linear",
+            "periodo": 2
+        },
+        {
+            "codigo": "CM202",
+            "nome": "Cálculo Diferencial e Integral II",
+            "periodo": 2
+        }
+    ],
+    "3": [
+        {
+            "codigo": "CI212",
+            "nome": "Organização e Arquitetura de Computadores",
+            "periodo": 3
+        },
+        {
+            "codigo": "CI057",
+            "nome": "Algoritmos e Estruturas de Dados III",
+            "periodo": 3
+        },
+        {
+            "codigo": "CI064",
+            "nome": "Software Básico",
+            "periodo": 3
+        },
+        {
+            "codigo": "CI237",
+            "nome": "Matemática Discreta",
+            "periodo": 3
+        },
+        {
+            "codigo": "CI166",
+            "nome": "Metodologia Científica",
+            "periodo": 3
+        }
+    ],
+    "4": [
+        {
+            "codigo": "CI215",
+            "nome": "Sistemas Operacionais",
+            "periodo": 4
+        },
+        {
+            "codigo": "CI062",
+            "nome": "Técnicas Alternativas de Programação",
+            "periodo": 4
+        },
+        {
+            "codigo": "CE003",
+            "nome": "Estatística II",
+            "periodo": 4
+        },
+        {
+            "codigo": "CI058",
+            "nome": "Redes de Computadores I",
+            "periodo": 4
+        },
+        {
+            "codigo": "CI164",
+            "nome": "Introdução à Computação Científica",
+            "periodo": 4
+        }
+    ],
+    "5": [
+        {
+            "codigo": "CI162",
+            "nome": "Engenharia de Requisitos",
+            "periodo": 5
+        },
+        {
+            "codigo": "CI065",
+            "nome": "Algoritmos e Teoria dos Grafos",
+            "periodo": 5
+        },
+        {
+            "codigo": "CI059",
+            "nome": "Introdução à Teoria da Computação",
+            "periodo": 5
+        },
+        {
+            "codigo": "CI061",
+            "nome": "Redes de Computadores II",
+            "periodo": 5
+        },
+        {
+            "codigo": "SA214",
+            "nome": "Introdução à Teoria Geral da Administração",
+            "periodo": 5
+        }
+    ],
+    "6": [
+        {
+            "codigo": "CI163",
+            "nome": "Projeto de Software",
+            "periodo": 6
+        },
+        {
+            "codigo": "CI165",
+            "nome": "Análise de Algoritmos",
+            "periodo": 6
+        },
+        {
+            "codigo": "CI209",
+            "nome": "Inteligência Artificial",
+            "periodo": 6
+        },
+        {
+            "codigo": "CI218",
+            "nome": "Sistemas de Bancos de Dados",
+            "periodo": 6
+        },
+        {
+            "codigo": "CI220",
+            "nome": "Teoria de Sistemas",
+            "periodo": 6
+        }
+    ],
+    "7": [
+        {
+            "codigo": "CI221",
+            "nome": "Engenharia de Software",
+            "periodo": 7
+        },
+        {
+            "codigo": "CI211",
+            "nome": "Construção de Compiladores",
+            "periodo": 7
+        },
+        {
+            "codigo": "OPT1",
+            "nome": "Optativa",
+            "periodo": 7
+        },
+        {
+            "codigo": "OPT2",
+            "nome": "Optativa",
+            "periodo": 7
+        },
+        {
+            "codigo": "TG1",
+            "nome": "Trabalho de Graduação I",
+            "periodo": 7
+        }
+    ],
+    "8": [
+        {
+            "codigo": "OPT3",
+            "nome": "Optativa",
+            "periodo": 8
+        },
+        {
+            "codigo": "OPT4",
+            "nome": "Optativa",
+            "periodo": 8
+        },
+        {
+            "codigo": "OPT5",
+            "nome": "Optativa",
+            "periodo": 8
+        },
+        {
+            "codigo": "OPT6",
+            "nome": "Optativa",
+            "periodo": 8
+        },
+        {
+            "codigo": "TG2",
+            "nome": "Trabalho de Graduação II",
+            "periodo": 8
+        }
+    ],
+    "OPT": [
+        {
+            "codigo": "CI069",
+            "nome": "Administração de Empresas de Informática"
+        },
+        {
+            "codigo": "CI084",
+            "nome": "Tópicos em Teoria dos Grafos"
+        },
+        {
+            "codigo": "CI085",
+            "nome": "Tópicos em Computação Gráfica"
+        },
+        {
+            "codigo": "CI086",
+            "nome": "Tópicos em Arquitetura de Computadores"
+        },
+        {
+            "codigo": "CI087",
+            "nome": "Tópicos em Banco de Dados"
+        },
+        {
+            "codigo": "CI088",
+            "nome": "Tópicos em Sistemas Distribuídos"
+        },
+        {
+            "codigo": "CI089",
+            "nome": "Tópicos em Teoria da Computação"
+        },
+        {
+            "codigo": "CI090",
+            "nome": "Tópicos em Engenharia de Software"
+        },
+        {
+            "codigo": "CI091",
+            "nome": "Tópicos em Avaliação de Desempenho"
+        },
+        {
+            "codigo": "CI092",
+            "nome": "Tópicos em Tecnologias e Aplicações"
+        },
+        {
+            "codigo": "CI093",
+            "nome": "Tópicos em Análise Numérica"
+        },
+        {
+            "codigo": "CI094",
+            "nome": "Tópicos em Processamento de Imagens"
+        },
+        {
+            "codigo": "CI095",
+            "nome": "Tópicos em Compiladores"
+        },
+        {
+            "codigo": "CI097",
+            "nome": "Tópicos em Sistemas Digitais"
+        },
+        {
+            "codigo": "CI167",
+            "nome": "Sistemas de Informação em Saúde"
+        },
+        {
+            "codigo": "CI168",
+            "nome": "Tópicos em Sistemas de Informação em Saúde"
+        },
+        {
+            "codigo": "CI169",
+            "nome": "Bioinformática"
+        },
+        {
+            "codigo": "CI170",
+            "nome": "Tópicos em Bioinformática"
+        },
+        {
+            "codigo": "CI171",
+            "nome": "Aprendizado de Máquina"
+        },
+        {
+            "codigo": "CI172",
+            "nome": "Processamento de Imagens Biomédicas"
+        },
+        {
+            "codigo": "CI173",
+            "nome": "Computação Gráfica"
+        },
+        {
+            "codigo": "CI174",
+            "nome": "Tópicos em Engenharia da Computação"
+        },
+        {
+            "codigo": "CI204",
+            "nome": "Administração de Informática"
+        },
+        {
+            "codigo": "CI205",
+            "nome": "Administração de Produção para Informática"
+        },
+        {
+            "codigo": "CI214",
+            "nome": "Estrutura de Linguagens de Programação"
+        },
+        {
+            "codigo": "CI301",
+            "nome": "Tópicos em Ciência da Computação I"
+        },
+        {
+            "codigo": "CI302",
+            "nome": "Tópicos em Ciência da Computação II"
+        },
+        {
+            "codigo": "CI303",
+            "nome": "Tópicos em Ciência da Computação III"
+        },
+        {
+            "codigo": "CI304",
+            "nome": "Tópicos em Ciência da Computação IV"
+        },
+        {
+            "codigo": "CI305",
+            "nome": "Tópicos em Ciência da Computação V"
+        },
+        {
+            "codigo": "CI306",
+            "nome": "Tópicos em Ciência da Computação VI"
+        },
+        {
+            "codigo": "CI309",
+            "nome": "Tópicos em Inteligência Artificial"
+        },
+        {
+            "codigo": "CI310",
+            "nome": "Tópicos em Aprendizado de Máquina"
+        },
+        {
+            "codigo": "CI311",
+            "nome": "Fundamentos Lógicos da Inteligência Artificial"
+        },
+        {
+            "codigo": "CI312",
+            "nome": "Arquiteturas Avançadas de Computadores"
+        },
+        {
+            "codigo": "CI313",
+            "nome": "Arquitetura de Computadores Paralelos"
+        },
+        {
+            "codigo": "CI314",
+            "nome": "Introdução à Computação Paralela"
+        },
+        {
+            "codigo": "CI315",
+            "nome": "Projeto de Sistemas Operacionais"
+        },
+        {
+            "codigo": "CI316",
+            "nome": "Programação Paralela"
+        },
+        {
+            "codigo": "CI317",
+            "nome": "Tópicos em Sistemas Operacionais"
+        },
+        {
+            "codigo": "CI318",
+            "nome": "Tópicos em Computação Paralela"
+        },
+        {
+            "codigo": "CI320",
+            "nome": "Tópicos em Programação de Computadores"
+        },
+        {
+            "codigo": "CI321",
+            "nome": "Tópicos em Sistemas Embutidos"
+        },
+        {
+            "codigo": "CI337",
+            "nome": "Tópicos em Matemática Discreta"
+        },
+        {
+            "codigo": "CI338",
+            "nome": "Tópicos em Geometria Computacional"
+        },
+        {
+            "codigo": "CI339",
+            "nome": "Complexidade Computacional"
+        },
+        {
+            "codigo": "CI340",
+            "nome": "Tópicos em Métodos Formais"
+        },
+        {
+            "codigo": "CI350",
+            "nome": "Interação Humano-Computador"
+        },
+        {
+            "codigo": "CI351",
+            "nome": "Tópicos em Interação Humano-Computador"
+        },
+        {
+            "codigo": "CI355",
+            "nome": "Tópicos em Algoritmos"
+        },
+        {
+            "codigo": "CI358",
+            "nome": "Administração e Gerência de Redes de Computadores"
+        },
+        {
+            "codigo": "CI359",
+            "nome": "Laboratório de Redes de Computadores"
+        },
+        {
+            "codigo": "CI360",
+            "nome": "Redes Móveis"
+        },
+        {
+            "codigo": "CI361",
+            "nome": "Sistemas Distribuídos"
+        },
+        {
+            "codigo": "CI362",
+            "nome": "Sistemas Operacionais Distribuídos"
+        },
+        {
+            "codigo": "CI363",
+            "nome": "Tópicos de Multimídia em Redes de Computadores"
+        },
+        {
+            "codigo": "CI364",
+            "nome": "Tópicos em Computação em Rede"
+        },
+        {
+            "codigo": "CI365",
+            "nome": "Tópicos em Redes de Computadores"
+        },
+        {
+            "codigo": "CI366",
+            "nome": "Tópicos em Redes Móveis"
+        },
+        {
+            "codigo": "CI367",
+            "nome": "Tópicos em Simulação de Sistemas Computacionais"
+        },
+        {
+            "codigo": "CI394",
+            "nome": "Processamento de Imagens"
+        },
+        {
+            "codigo": "CI395",
+            "nome": "Oficina de Visão Computacional e Processamento de Imagens"
+        },
+        {
+            "codigo": "CI396",
+            "nome": "Tópicos em Visão Computacional"
+        },
+        {
+            "codigo": "ET082",
+            "nome": "Comunicação em Língua Brasileira de Sinais"
+        },
+        {
+            "codigo": "CE211",
+            "nome": "Processos Estocásticos"
+        },
+        {
+            "codigo": "CM043",
+            "nome": "Cálculo III"
+        },
+        {
+            "codigo": "HL077",
+            "nome": "Linguística e Comunicação"
+        },
+        {
+            "codigo": "SA017",
+            "nome": "Administração III"
+        },
+        {
+            "codigo": "SC003",
+            "nome": "Contabilidade Geral I"
+        },
+        {
+            "codigo": "SC202",
+            "nome": "Contabilidade de Custos para Informática"
+        },
+        {
+            "codigo": "SC203",
+            "nome": "Matemática Financeira para Informática"
+        }
+    ],
+    "TG": [
+        {
+            "codigo": "CI070",
+            "nome": "Trabalho de Graduação em Engenharia de Software I"
+        },
+        {
+            "codigo": "CI071",
+            "nome": "Trabalho de Graduação em Engenharia de Software II"
+        },
+        {
+            "codigo": "CI072",
+            "nome": "Trabalho de Graduação em Bancos de Dados I"
+        },
+        {
+            "codigo": "CI073",
+            "nome": "Trabalho de Graduação em Bancos de Dados II"
+        },
+        {
+            "codigo": "CI074",
+            "nome": "Trabalho de Graduação em Redes de Computadores I"
+        },
+        {
+            "codigo": "CI075",
+            "nome": "Trabalho de Graduação em Redes de Computadores II"
+        },
+        {
+            "codigo": "CI076",
+            "nome": "Trabalho de Graduação em Administração de Informática I"
+        },
+        {
+            "codigo": "CI077",
+            "nome": "Trabalho de Graduação em Administração de Informática II"
+        },
+        {
+            "codigo": "CI078",
+            "nome": "Trabalho de Graduação em Computação Gráfica I"
+        },
+        {
+            "codigo": "CI079",
+            "nome": "Trabalho de Graduação em Computação Gráfica II"
+        },
+        {
+            "codigo": "CI080",
+            "nome": "Trabalho de Graduação em Inteligência Artificial I"
+        },
+        {
+            "codigo": "CI081",
+            "nome": "Trabalho de Graduação em Inteligência Artificial II"
+        },
+        {
+            "codigo": "CI082",
+            "nome": "Trabalho de Graduação em Organização e Arquitetura de Computadores I"
+        },
+        {
+            "codigo": "CI083",
+            "nome": "Trabalho de Graduação em Organização e Arquitetura de Computadores II"
+        },
+        {
+            "codigo": "CI098",
+            "nome": "Trabalho de Graduação em Informática na Educação I"
+        },
+        {
+            "codigo": "CI099",
+            "nome": "Trabalho de Graduação em Informática na Educação II"
+        },
+        {
+            "codigo": "CI250",
+            "nome": "Trabalho de Graduação em Algoritmos e Grafos I"
+        },
+        {
+            "codigo": "CI251",
+            "nome": "Trabalho de Graduação em Algoritmos e Grafos II"
+        },
+        {
+            "codigo": "CI252",
+            "nome": "Trabalho de Graduação em Teoria da Computação I"
+        },
+        {
+            "codigo": "CI253",
+            "nome": "Trabalho de Graduação em Teoria da Computação II"
+        },
+        {
+            "codigo": "CI254",
+            "nome": "Trabalho de Graduação em Sistemas Digitais I"
+        },
+        {
+            "codigo": "CI255",
+            "nome": "Trabalho de Graduação em Sistemas Digitais II"
+        },
+        {
+            "codigo": "CI256",
+            "nome": "Trabalho de Graduação em Sistemas Operacionais I"
+        },
+        {
+            "codigo": "CI257",
+            "nome": "Trabalho de Graduação em Sistemas Operacionais II"
+        },
+        {
+            "codigo": "CI258",
+            "nome": "Trabalho de Graduação em Interação Humano-Computador I"
+        },
+        {
+            "codigo": "CI259",
+            "nome": "Trabalho de Graduação em Interação Humano-Computador II"
+        },
+        {
+            "codigo": "CI260",
+            "nome": "Trabalho de Graduação em Processamento de Imagens I"
+        },
+        {
+            "codigo": "CI261",
+            "nome": "Trabalho de Graduação em Processamento de Imagens II"
+        }
+    ]
+}

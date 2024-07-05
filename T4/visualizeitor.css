@@ -1,0 +1,277 @@
+.bg-grade {
+    background-color: #d8973c !important;
+}
+
+.aba {
+    width: fit-content;
+    position: absolute;
+    top: -23px;
+    left: 0;
+}
+
+#grade-opt{
+    width: fit-content;
+}
+
+/**sobrescrever*/
+
+.bg-primario {
+    background-color: #83C5BE !important;
+}
+
+.bg-secundario {
+    background-color: #E29578 !important;
+}
+
+.btn:hover {
+    background-color: #006d77 !important;
+    border-color: #006d77 !important;
+}
+
+.bg-body-primario {
+    background-color: #edf6f9 !important;
+}
+
+.bd-area-texto {
+    background-color: #d3f4ff !important;
+}
+
+.lato-black {
+    font-family: "Lato", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    color: #2c2c39;
+}
+
+/* como nao estou usando sass, copiei direto do bootstrap */
+
+/* const STATUS = {
+    APROVADO: "aprovado",
+    REPROVADO_NOTA: "reprovado",
+    REPROVADO_FREQUENCIA: "repr-freq",
+    MATRICULADO: "matricula",
+    CANCELADO: "cancelado",
+    EQUIVALENCIA: "equivale",
+    DISPENSA_DE_DISCIPLINA: "dispensa",
+    NAO_CURSADO: "default",
+    NONE: "none"
+} */
+
+/* Aprovado, copiado btn-success do bootstrap */
+.btn-aprovado {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #198754 !important;
+    --bs-btn-border-color: #198754 !important;
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #157347 !important;
+    --bs-btn-hover-border-color: #146c43 !important;
+    --bs-btn-focus-shadow-rgb: 60, 153, 110 !important;
+    --bs-btn-active-color: #fff !important;
+    --bs-btn-active-bg: #146c43 !important;
+    --bs-btn-active-border-color: #13653f !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+    --bs-btn-disabled-color: #fff !important;
+    --bs-btn-disabled-bg: #198754 !important;
+    --bs-btn-disabled-border-color: #198754 !important;
+}
+
+/* Reprovado por nota, copiado btn-danger do bootstrap */
+.btn-reprovado {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #dc3545 !important;
+    --bs-btn-border-color: #dc3545 !important;
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #bb2d3b !important;
+    --bs-btn-hover-border-color: #b02a37 !important;
+    --bs-btn-focus-shadow-rgb: 225, 83, 97 !important;
+    --bs-btn-active-color: #fff !important;
+    --bs-btn-active-bg: #b02a37 !important;
+    --bs-btn-active-border-color: #a52834 !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+    --bs-btn-disabled-color: #fff !important;
+    --bs-btn-disabled-bg: #dc3545 !important;
+    --bs-btn-disabled-border-color: #dc3545 !important;
+}
+
+/* */
+.btn-repr-freq {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #dc3545 !important;
+    --bs-btn-border-color: #dc3545 !important;
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #bb2d3b !important;
+    --bs-btn-hover-border-color: #b02a37 !important;
+    --bs-btn-focus-shadow-rgb: 225, 83, 97 !important;
+    --bs-btn-active-color: #fff !important;
+    --bs-btn-active-bg: #b02a37 !important;
+    --bs-btn-active-border-color: #a52834 !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+    --bs-btn-disabled-color: #fff !important;
+    --bs-btn-disabled-bg: #dc3545 !important;
+    --bs-btn-disabled-border-color: #dc3545 !important;
+}
+/* Matriculado, copiado btn-primary do bootstrap */
+.btn-matricula {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #0d6efd !important;
+    --bs-btn-border-color: #0d6efd !important;
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #0b5ed7 !important;
+    --bs-btn-hover-border-color: #0a58ca !important;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253 !important;
+    --bs-btn-active-color: #fff !important;
+    --bs-btn-active-bg: #0a58ca !important;
+    --bs-btn-active-border-color: #0a53be !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+    --bs-btn-disabled-color: #fff !important;
+    --bs-btn-disabled-bg: #0d6efd !important;
+    --bs-btn-disabled-border-color: #0d6efd !important;
+}
+
+/* Equivalência, copiado btn-warning do bootstrap */
+.btn-equivale {
+    --bs-btn-color: #000 !important;
+    --bs-btn-bg: #ffc107 !important;
+    --bs-btn-border-color: #ffc107 !important;
+    --bs-btn-hover-color: #000 !important;
+    --bs-btn-hover-bg: #ffca2c !important;
+    --bs-btn-hover-border-color: #ffc720 !important;
+    --bs-btn-focus-shadow-rgb: 217, 164, 6 !important;
+    --bs-btn-active-color: #000 !important;
+    --bs-btn-active-bg: #ffcd39 !important;
+    --bs-btn-active-border-color: #ffc720 !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+    --bs-btn-disabled-color: #000 !important;
+    --bs-btn-disabled-bg: #ffc107 !important;
+    --bs-btn-disabled-border-color: #ffc107 !important;
+}
+
+/* para default, copiado btn-light do bootstrap */
+.btn-default {
+    --bs-btn-color: #000 !important;
+    --bs-btn-bg: #f8f9fa !important;
+    --bs-btn-border-color: #f8f9fa !important;
+    --bs-btn-hover-color: #000 !important;
+    --bs-btn-hover-bg: #d3d4d5 !important;
+    --bs-btn-hover-border-color: #c6c7c8 !important;
+    --bs-btn-focus-shadow-rgb: 211, 212, 213 !important;
+    --bs-btn-active-color: #000 !important;
+    --bs-btn-active-bg: #c6c7c8 !important;
+    --bs-btn-active-border-color: #babbbc !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+    --bs-btn-disabled-color: #000 !important;
+    --bs-btn-disabled-bg: #f8f9fa !important;
+    --bs-btn-disabled-border-color: #f8f9fa !important;
+}
+
+/* mesmo que default */
+.btn-none {
+    --bs-btn-color: #000 !important;
+    --bs-btn-bg: #f8f9fa !important;
+    --bs-btn-border-color: #f8f9fa !important;
+    --bs-btn-hover-color: #000 !important;
+    --bs-btn-hover-bg: #d3d4d5 !important;
+    --bs-btn-hover-border-color: #c6c7c8 !important;
+    --bs-btn-focus-shadow-rgb: 211, 212, 213 !important;
+    --bs-btn-active-color: #000 !important;
+    --bs-btn-active-bg: #c6c7c8 !important;
+    --bs-btn-active-border-color: #babbbc !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+    --bs-btn-disabled-color: #000 !important;
+    --bs-btn-disabled-bg: #f8f9fa !important;
+    --bs-btn-disabled-border-color: #f8f9fa !important;
+}
+
+/* um botao baseado na cor #E29578 */
+.btn-cancelado {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #E29578 !important;
+    --bs-btn-border-color: #E29578 !important;
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #d17b5f !important;
+    --bs-btn-hover-border-color: #c97355 !important;
+    --bs-btn-focus-shadow-rgb: 226, 149, 120 !important;
+    --bs-btn-active-color: #fff !important;
+    --bs-btn-active-bg: #c97355 !important;
+    --bs-btn-active-border-color: #c26e50 !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+    --bs-btn-disabled-color: #fff !important;
+    --bs-btn-disabled-bg: #E29578 !important;
+    --bs-btn-disabled-border-color: #E29578 !important;
+}
+
+/* mesmo que aprovado */
+.btn-dispensa {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #198754 !important;
+    --bs-btn-border-color: #198754 !important;
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #157347 !important;
+    --bs-btn-hover-border-color: #146c43 !important;
+    --bs-btn-focus-shadow-rgb: 60, 153, 110 !important;
+    --bs-btn-active-color: #fff !important;
+    --bs-btn-active-bg: #146c43 !important;
+    --bs-btn-active-border-color: #13653f !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+    --bs-btn-disabled-color: #fff !important;
+    --bs-btn-disabled-bg: #198754 !important;
+    --bs-btn-disabled-border-color: #198754 !important;
+}
+
+.btn-trancamento {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #6c757d !important;
+    --bs-btn-border-color: #6c757d !important;
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #5c636a !important;
+    --bs-btn-hover-border-color: #565e64 !important;
+    --bs-btn-focus-shadow-rgb: 130,138,145 !important;
+    --bs-btn-active-color: #fff !important;
+    --bs-btn-active-bg: #565e64 !important;
+    --bs-btn-active-border-color: #51585e !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+    --bs-btn-disabled-color: #fff !important;
+    --bs-btn-disabled-bg: #6c757d !important;
+    --bs-btn-disabled-border-color: #6c757d !important;
+}
+
+/* bg com base no status */
+.bg-aprovado {
+    background-color: #198754 !important;
+}
+
+.bg-reprovado {
+    background-color: #dc3545 !important;
+}
+
+.bg-repr-freq {
+    background-color: #dc3545 !important;
+}
+
+.bg-matricula {
+    background-color: #0d6efd !important;
+}
+
+.bg-equivale {
+    background-color: #ffc107 !important;
+}
+
+.bg-default {
+    background-color: #f8f9fa !important;
+}
+
+.bg-none {
+    background-color: #f8f9fa !important;
+}
+
+.bg-cancelado {
+    background-color: #E29578 !important;
+}
+
+.bg-dispensa {
+    background-color: #198754 !important;
+}
+
+.bg-trancamento {
+    background-color: #6c757d !important;
+}
