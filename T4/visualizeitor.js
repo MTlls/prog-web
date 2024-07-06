@@ -2,6 +2,8 @@ const area_grade = document.getElementById("grade");
 const area_grade_opt = document.getElementById("grade-opt");
 const area_grade_tg = document.querySelectorAll("#grade-tg1, #grade-tg2");
 const area_outras = document.getElementById("grade-outras");
+// Seleciona todos os botões das grades
+var todosBotoes = [];
 
 class Aluno {
     constructor(nome, matricula, materias) {
@@ -69,6 +71,7 @@ class Aluno {
             var tipo = $(this).children("DESCR_ESTRUTURA").text();
             var ano = $(this).children("ANO").text();
             var nota = $(this).children("MEDIA_FINAL").text();
+            var frequencia = $(this).children("FREQUENCIA").text();
 
             // Cria o objeto matéria
             var materia = {
@@ -78,34 +81,41 @@ class Aluno {
                 ano: ano,
                 nota: nota,
                 codigo: codigo,
-                tipo: tipo
+                tipo: tipo,
+                frequencia: frequencia
             };
 
             // Encontra a matéria existente no array
-            var materiaExistente = materiasArray.find(m => m.codigo === codigo);
-
-            if (!materiaExistente) {
-                // Se não existir, adiciona a nova matéria
-                materiasArray.push(materia);
+            var materiaExistenteArray = materiasArray.find(m => m[0].codigo === codigo);
+            if (!materiaExistenteArray) {
+                // Se não existir, adiciona um novo array com a matéria
+                materiasArray.push([materia]);
             } else {
-                // Se existir, atualiza se a nova é mais recente
-                if (materiaExistente.ano < ano || (materiaExistente.ano == ano && materiaExistente.periodo < periodo)) {
-                    var index = materiasArray.indexOf(materiaExistente);
-                    materiasArray[index] = materia;
-                }
+                // Se existir, insere a nova matéria ao final do array correspondente
+                materiaExistenteArray.push(materia);
+
+                // Ordena o array interno pelo ano e período
+                materiaExistenteArray.sort((a, b) => {
+                    if (a.ano !== b.ano) {
+                        return a.ano - b.ano; // Ordem crescente do ano
+                    }
+                    return a.periodo - b.periodo; // Ordem crescente do período
+                });
             }
         });
 
-        // Ordena o array pelo ano e, em seguida, pelo período
+        // Ordena o array externo pelo ano e, em seguida, pelo período da mais recente de cada array interno
         materiasArray.sort((a, b) => {
-            if (a.ano !== b.ano) {
-                return a.ano - b.ano;
+            const aRecent = a[a.length - 1]; // O mais recente é o último no array interno
+            const bRecent = b[b.length - 1];
+            if (aRecent.ano !== bRecent.ano) {
+                return bRecent.ano - aRecent.ano; // Ordem decrescente do ano
             }
-            return a.periodo - b.periodo;
+            return bRecent.periodo - aRecent.periodo; // Ordem decrescente do período
         });
 
-        // Converte o array ordenado de volta para um Map
-        var materiasMap = new Map(materiasArray.map(materia => [materia.codigo, materia]));
+        // Converte o array ordenado de volta para um Map com o código como chave
+        var materiasMap = new Map(materiasArray.map(materiaArr => [materiaArr[0].codigo, materiaArr]));
 
         return new Aluno(nome, matricula, materiasMap);
     }
@@ -119,15 +129,14 @@ var data = await fetch("grade-default.json")
 
 // se houver algum evento de submit no #form, chama a função pesquisaAluno
 $(document).ready(function () {
-    ativaTooltips();    
-    // geraGrade("none");
-    // geraGradeOptTG("none");
+    ativaTooltips();
+
     $('#form').submit(function (event) {
-        event.preventDefault(); // Cancela o evento de submit
-        // Chama a função pesquisaAluno
+        event.preventDefault();
         pesquisaAluno();
     });
-})
+});
+
 
 
 function verificaEntrada(entrada) {
@@ -311,8 +320,29 @@ function pesquisaAluno() {
             atualizaGradeOptTG(aluno);
             atualizaGradeOutras(aluno);
             ativaTooltips();
+
+            // listener contextmenu para os botões
+            todosBotoes = Array.from(area_grade.querySelectorAll("button"));
+            todosBotoes = todosBotoes.concat(Array.from(area_grade_opt.querySelectorAll("button")));
+            todosBotoes = todosBotoes.concat(Array.from(area_grade_tg[0].querySelectorAll("button")));
+            todosBotoes = todosBotoes.concat(Array.from(area_grade_tg[1].querySelectorAll("button")));
+            todosBotoes = todosBotoes.concat(Array.from(area_outras.querySelectorAll("button")));
+
+            // faz o display do modal-hist-<codigo> quando o botão é clicado com o botao direito
+            todosBotoes.forEach((botao) => {
+                botao.addEventListener("contextmenu", function (event) {
+                    event.preventDefault();
+                    var modal = document.getElementById("modal-hist-" + botao.id);
+                    var bsModal = new bootstrap.Modal(modal);
+                    bsModal.show();
+                });
+            });
+
+
         }
     });
+
+
 
     // retornamos falso para não recarregar a página
     return false;
@@ -320,25 +350,21 @@ function pesquisaAluno() {
 
 function atualizaGrade(aluno) {
     var quantidadeOptativas = 0;
-    var quantidadeTG = 0;
+    var quantidadeTG1 = 0, quantidadeTG2 = 0;
     var materias = aluno.materias;
     // aluno.imprimeDados();
     // muda o name da grade para o grr do aluno
     area_grade.setAttribute("name", aluno.matricula);
 
-    // imprime o nome e a data da materia cursada
-    // materias.forEach((materia) => {
-    //     console.log(`Matéria: ${materia.nome}`);
-    //     console.log(`Período: ${materia.ano}/${materia.periodo}`);
-    //     console.log("\n");
-    // });
-
     // Para cada materia do aluno, altera o status do botão correspondente
     let optInseridas = 0, tgInseridas = 0;
     limpaGrades();
-    materias.forEach((materia) => {
+
+    materias.forEach((historico) => {
+        // Pega o último histórico da matéria (o mais recente)
+        var materia = historico[historico.length - 1];
         var button;
-        // como o xml tem dados desatualizados e nao temos o curriculo de 1998, podemos procurar diretamente no document se a materia existe ainda no curriculo de 2011
+        // Como o XML tem dados desatualizados e não temos o currículo de 1998, podemos procurar diretamente no documento se a matéria existe ainda no currículo de 2011
         if (!(button = area_grade.querySelector(`#${materia.codigo}`))) {
             if (materia.tipo === "Optativas" &&
                 (button = area_grade.querySelector("#OPT" + (optInseridas + 1))) && (materia.situacao == STATUS.APROVADO || materia.situacao == STATUS.MATRICULADO)) {
@@ -349,37 +375,58 @@ function atualizaGrade(aluno) {
                 optInseridas++;
                 let modal = document.getElementById(button.getAttribute("data-bs-target").slice(1));
                 vinculaGradeOpt(materia, modal);
-            } else if (materia.tipo.includes("Trabalho de Graduação") && (button = area_grade.querySelector("#TG" + (tgInseridas + 1))) && (materia.situacao == STATUS.APROVADO || materia.situacao == STATUS.MATRICULADO)) {
+            }
+            // dependendo insere no tg1 ou no tg2
+            // includes("Trabalho de Graduação") &&
+            //     (button = area_grade.querySelector("#TG" + (tgInseridas + 1))) && (materia.situacao == STATUS.APROVADO || materia.situacao == STATUS.MATRICULADO)) {
+
+            //     button.innerText = materia.codigo;
+            //     trocaStatus(button, materia);
+            //     atualizaTooltip(button, materia);
+            //     tgInseridas++;
+            //     let modal = document.getElementById(button.getAttribute("data-bs-target").slice(1));
+            //     vinculaGradeTG(materia, modal);
+            // }
+            else if (materia.tipo === "Trabalho de Graduação I" &&
+                (button = area_grade.querySelector("#TG1")) && (materia.situacao == STATUS.APROVADO || materia.situacao == STATUS.MATRICULADO) && quantidadeTG1 < 1) {
+
                 button.innerText = materia.codigo;
                 trocaStatus(button, materia);
                 atualizaTooltip(button, materia);
-                tgInseridas++;
+                quantidadeTG1++;
                 let modal = document.getElementById(button.getAttribute("data-bs-target").slice(1));
                 vinculaGradeTG(materia, modal);
-            } else {
-                return;
+            }
+            else if (materia.tipo === "Trabalho de Graduação II" &&
+                (button = area_grade.querySelector("#TG2")) && (materia.situacao == STATUS.APROVADO || materia.situacao == STATUS.MATRICULADO) && quantidadeTG2 < 1) {
+
+                button.innerText = materia.codigo;
+                trocaStatus(button, materia);
+                atualizaTooltip(button, materia);
+                quantidadeTG2++;
+                let modal = document.getElementById(button.getAttribute("data-bs-target").slice(1));
+                vinculaGradeTG(materia, modal);
+            }
+            else if (materia.tipo !== "Optativas" && !(materia.tipo.includes("Trabalho de Graduação"))) {
+                // Se a matéria não existe no currículo de 2011, cria um novo botão
+                criaMateria(area_outras, materia);
+                atualizaModal(document.getElementById("modal-" + materia.codigo), materia);
             }
         } else {
             button = document.getElementById(materia.codigo);
             trocaStatus(button, materia);
         }
 
-        // Atualiza o modal da matéria
-        // Altera o status do botão para o status da matéria
 
-        // Se a matéria for optativa, incrementa a quantidade de optativas
-        if (materia.tipo === "Optativas") {
-            quantidadeOptativas++;
-        }
+        // junto a isso, cria um modal para cada materia, mostrando o historico da mesma
+        criaHistoricoModal(historico);
 
-        // Se a matéria for TG, incrementa a quantidade de TGs
-        if (materia.tipo === ("Trabalho de Graduação")) {
-            quantidadeTG++;
-        }
+
     });
 
     ativaTooltips();
 }
+
 
 // função que limpa a grade, deixando todos os botões em branco
 function limpaGrades() {
@@ -520,8 +567,8 @@ function criaModal(materia) {
         </div>
     </div>`;
 
-    // se a situação nao existir, usa a cor #6f42c1 como background color header, como !important
-    if (materia.situacao == STATUS.NAO_CURSADO){
+
+    if (materia.situacao == STATUS.NAO_CURSADO) {
         // remove o background color do header
         let header = document.getElementById("modal-" + materia.codigo).querySelector(".modal-header");
         header.classList.remove("text-light");
@@ -566,10 +613,10 @@ function atualizaModal(modal, materia) {
     <p>Código: ${materia.codigo}</p>
     <p>Nome: ${materia.nome}</p>
     <p>Situação: ${materia.situacao}</p>
-    <p>Período: ${materia.periodo}</p>
     <p>Ano: ${materia.ano}</p>
+    <p>Período: ${materia.periodo}</p>
     <p>Nota: ${materia.nota}</p>
-    <p>Tipo: ${materia.tipo}</p>
+    <p>Frequência: ${materia.frequencia}</p>
     `;
 }
 
@@ -589,39 +636,53 @@ function ativaTooltips() {
 // insere a materia optativa na grade de optativas
 function atualizaGradeOptTG(aluno) {
     var materias = aluno.materias;
-    var materiasArray = Array.from(materias.values()).filter(materia => materia.tipo === "Optativas" || materia.tipo.includes("Trabalho de Graduação"));
+    var materiasArray = Array.from(materias.values()).filter(historico => {
+        var materia = historico[historico.length - 1]; // Pega o último histórico (o mais recente)
+        return materia.tipo === "Optativas" || materia.tipo.includes("Trabalho de Graduação");
+    });
 
-    // todos os botoes de optativas e TG
-    var buttons = Array.from(area_grade_opt.querySelectorAll("button"));
-    buttons = buttons.concat(Array.from(area_grade_tg[0].querySelectorAll("button")));
-    buttons = buttons.concat(Array.from(area_grade_tg[1].querySelectorAll("button")));
+    // Todos os botões de optativas e TG
+    var buttonsOpt = Array.from(area_grade_opt.querySelectorAll("button"));
+    var buttonsTG1 = Array.from(area_grade_tg[0].querySelectorAll("button"));
+    var buttonsTG2 = Array.from(area_grade_tg[1].querySelectorAll("button"));
+    var buttons = buttonsOpt.concat(buttonsTG1).concat(buttonsTG2);
 
-    materiasArray.forEach((materia) => {
-        // verifica se a materia ja nao esta na grade principal
-        if (area_grade.querySelector("#" + materia.codigo))
+    materiasArray.forEach((historico) => {
+        var materia = historico[historico.length - 1]; // Pega o último histórico (o mais recente)
+
+        // Verifica se a matéria já está na grade principal
+        if (area_grade.querySelector("#" + materia.codigo)) {
             return;
+        }
 
-        // procura o botao da materia em buttons
+        // Procura o botão da matéria em buttons
         var button = buttons.find(button => button.id === materia.codigo);
 
-        // se nao tem, cria
+        // Se não tem, cria
         if (!button) {
             let grade;
 
             if (materia.tipo === "Optativas") {
                 grade = area_grade_opt;
+            } else if (materia.tipo.includes("Trabalho de Graduação")) {
+                if (materia.tipo === "Trabalho de Graduação I") {
+                    grade = area_grade_tg[0];
+                } else if (materia.tipo === "Trabalho de Graduação II") {
+                    grade = area_grade_tg[1];
+                }
             }
-            else if (materia.tipo === "Trabalho de Graduação I") {
-                grade = area_grade_tg[0];
-            } else if (materia.tipo === "Trabalho de Graduação II") {
-                grade = area_grade_tg[1];
-            }
+
             criaMateria(grade, materia);
+            atualizaModal(document.getElementById("modal-" + materia.codigo), materia);
             return;
         }
+
+        // Atualiza o status do botão conforme o último histórico da matéria
         trocaStatus(button, materia);
     });
+
 }
+
 
 // vincula uma materia optativa na grade principal para a grade de optativas
 function vinculaGradeOpt(materia, modal) {
@@ -696,26 +757,84 @@ function criaMateria(grade, materia) {
     ativaTooltips();
 }
 
-// insere nessa grade todas as materias que nao foram inseridas
 function atualizaGradeOutras(aluno) {
     var materias = aluno.materias;
     var materiasArray = Array.from(materias.values());
 
-    // todos os botoes de optativas e TG
-    var buttons = Array.from(area_outras.querySelectorAll("button"));
+    materiasArray.forEach((historico) => {
+        // Pega o último histórico da matéria (o mais recente)
+        var materia = historico[historico.length - 1];
 
-    materiasArray.forEach((materia) => {
-        // verifica se a materia ja nao esta no documento
-        if (document.querySelector("#" + materia.codigo))
+        // Verifica se a matéria já está no documento
+        if (document.querySelector("#" + materia.codigo)) {
             return;
+        }
 
-        // como nao existe, cria o modal e o botao
+        // Como não existe, cria o modal e o botão
         criaMateria(area_outras, materia);
         criaModal(materia);
 
     });
 
-    // faz uma animação de accordeon na grade e após isso troca o display pra flex
+    // Faz uma animação de accordion na grade e após isso troca o display para flex
     $(area_outras).collapse('show');
     area_outras.style.display = "flex";
+}
+
+// função que cria um modal com uma tabela com histórico da matéria
+function criaHistoricoModal(materia) {
+    // Extrai o código e o nome da matéria a partir do primeiro item do histórico
+    var materiaAtual = materia[0];
+    var codigo = materiaAtual.codigo;
+    var nome = materiaAtual.nome;
+
+    // Cria o id do modal a partir do código da matéria
+    var modalId = 'modal-hist-' + codigo;
+
+    // Imprime o histórico da matéria no console (apenas para depuração)
+    materia.forEach(h => {
+        console.log(h.ano + "/" + h.periodo + " - " + h.situacao + " - " + (h.nota !== undefined ? h.nota : 'N/A') + " - " + (h.frequencia !== undefined ? h.frequencia : 'N/A'));
+    });
+
+    // Cria o modal usando Bootstrap
+    var modalHTML = `
+        <div class="modal fade" id="${modalId}" tabindex="-1" aria-labelledby="${modalId}Label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="${modalId}Label">Histórico de ${nome} (${codigo})</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Ano/Semestre</th>
+                                    <th>Frequência</th>
+                                    <th>Nota</th>
+                                    <th>Situação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${materia.map(h => `
+                                    <tr>
+                                        <td>${h.ano}/${h.periodo}</td>
+                                        <td>${h.frequencia}</td>
+                                        <td>${h.nota}</td>
+                                        <td>${h.situacao}</td>
+                                    </tr>`).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Insere o modal no corpo do documento
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+
 }
