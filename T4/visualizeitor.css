@@ -20,9 +20,16 @@
 }
 
 .bg-secundario {
+    background-color: #8BB174 !important;
+}
+
+.bg-terciario {
     background-color: #E29578 !important;
 }
 
+.bg-outras{
+    background-color: #003077;
+}
 .btn:hover {
     background-color: #006d77 !important;
     border-color: #006d77 !important;

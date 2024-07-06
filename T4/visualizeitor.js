@@ -1,6 +1,7 @@
 const area_grade = document.getElementById("grade");
 const area_grade_opt = document.getElementById("grade-opt");
 const area_grade_tg = document.querySelectorAll("#grade-tg1, #grade-tg2");
+const area_outras = document.getElementById("grade-outras");
 
 class Aluno {
     constructor(nome, matricula, materias) {
@@ -118,11 +119,11 @@ var data = await fetch("grade-default.json")
 
 // se houver algum evento de submit no #form, chama a função pesquisaAluno
 $(document).ready(function () {
-    geraGrade("none");
-    geraGradeOptTG("none");
+    ativaTooltips();    
+    // geraGrade("none");
+    // geraGradeOptTG("none");
     $('#form').submit(function (event) {
         event.preventDefault(); // Cancela o evento de submit
-
         // Chama a função pesquisaAluno
         pesquisaAluno();
     });
@@ -160,7 +161,7 @@ function geraGrade(tipo) {
         const index = data[periodo];
 
         const col = document.createElement("div");
-        col.classList.add("col", "col-flex", "d-flex", "flex-column", "justify-content-center", "text-center", "gap-3", "mb-3", "mt-3");
+        col.classList.add("col", "col-flex", "d-flex", "flex-column", "justify-content-center", "text-center", "gap-3", "p-3", "mb-3", "mt-3");
         const h2 = document.createElement("h2");
 
         // Limpa o conteúdo anterior do elemento col, se necessário
@@ -308,6 +309,8 @@ function pesquisaAluno() {
             aluno.imprimeDados();
             atualizaGrade(aluno);
             atualizaGradeOptTG(aluno);
+            atualizaGradeOutras(aluno);
+            ativaTooltips();
         }
     });
 
@@ -383,11 +386,14 @@ function limpaGrades() {
     // para todas as grades, junta em um HTMLelement e altera o status
     var buttons = Array.from(area_grade.querySelectorAll("button"));
     buttons = buttons.concat(Array.from(area_grade_opt.querySelectorAll("button")));
-    buttons = buttons.concat(Array.from(area_grade_tg.querySelectorAll("button")));
+    buttons = buttons.concat(Array.from(area_grade_tg[0].querySelectorAll("button")));
+    buttons = buttons.concat(Array.from(area_grade_tg[1].querySelectorAll("button")));
 
     buttons.forEach((button) => {
-        trocaStatus(button, { situacao: STATUS.NAO_CURSADO });
+        trocaStatus(button, { nome: button.parentElement.getAttribute("data-bs-title"), situacao: STATUS.NAO_CURSADO, periodo: null, ano: null, nota: null, codigo: button.id, tipo: null });
     });
+
+    area_outras.innerHTML = '';
 }
 
 // enums de status
@@ -501,7 +507,7 @@ function criaModal(materia) {
     <div class="modal fade" id="modal-${materia.codigo}">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header text-light">
+                <div class="modal-header text-light bg-${materia.situacao}">
                     <h5 class="modal-title">${materia.nome}</h5>
                 </div>
                 <div class="modal-body">
@@ -514,6 +520,13 @@ function criaModal(materia) {
         </div>
     </div>`;
 
+    // se a situação nao existir, usa a cor #6f42c1 como background color header, como !important
+    if (materia.situacao == STATUS.NAO_CURSADO){
+        // remove o background color do header
+        let header = document.getElementById("modal-" + materia.codigo).querySelector(".modal-header");
+        header.classList.remove("text-light");
+        header.classList.add("text-dark");
+    }
 }
 
 // função que atualiza o modal com as informações da materia
@@ -528,9 +541,13 @@ function atualizaModal(modal, materia) {
         }
     });
 
-    header.classList.add("bg-" + materia.situacao);
+    if (materia.situacao == STATUS.NAO_CURSADO)
+        header.classList.add("bg-dark");
+    else
+        header.classList.add("bg-" + materia.situacao);
 
-    header.innerText = materia.nome;
+    // insere o nome da materia em tipografia h5
+    header.querySelector("h5").innerHTML = materia.nome;
 
     // pega o corpo do modal
     var modalBody = modal.querySelector(".modal-body");
@@ -538,13 +555,10 @@ function atualizaModal(modal, materia) {
     // limpa o corpo do modal
     modalBody.innerHTML = '';
 
-    // se dentro do JSON existir (quer dizer que é obritoria) e no xml como nao obrigatoria, usa o do JSON
-    for (let periodo in data) {
-        for (let materiaJSON of data[periodo]) {
-            if (materiaJSON.codigo == materia.codigo) {
-                materia.tipo = "Obrigatórias";
-            }
-        }
+    // se for nao cursado, o modal fica apenas com a informação de nao cursado, o header fica com o texto da materia
+    if (materia.situacao == STATUS.NAO_CURSADO) {
+        modalBody.innerHTML = "<p>Não cursado</p>";
+        return;
     }
 
     // adiciona as informações da materia no corpo do modal
@@ -579,7 +593,8 @@ function atualizaGradeOptTG(aluno) {
 
     // todos os botoes de optativas e TG
     var buttons = Array.from(area_grade_opt.querySelectorAll("button"));
-    buttons = buttons.concat(Array.from(area_grade_tg.querySelectorAll("button")));
+    buttons = buttons.concat(Array.from(area_grade_tg[0].querySelectorAll("button")));
+    buttons = buttons.concat(Array.from(area_grade_tg[1].querySelectorAll("button")));
 
     materiasArray.forEach((materia) => {
         // verifica se a materia ja nao esta na grade principal
@@ -589,8 +604,21 @@ function atualizaGradeOptTG(aluno) {
         // procura o botao da materia em buttons
         var button = buttons.find(button => button.id === materia.codigo);
 
-        if (!button)
+        // se nao tem, cria
+        if (!button) {
+            let grade;
+
+            if (materia.tipo === "Optativas") {
+                grade = area_grade_opt;
+            }
+            else if (materia.tipo === "Trabalho de Graduação I") {
+                grade = area_grade_tg[0];
+            } else if (materia.tipo === "Trabalho de Graduação II") {
+                grade = area_grade_tg[1];
+            }
+            criaMateria(grade, materia);
             return;
+        }
         trocaStatus(button, materia);
     });
 }
@@ -611,14 +639,83 @@ function vinculaGradeOpt(materia, modal) {
 
 // vincula uma materia optativa na grade principal para a grade de trabalho de graduacao
 function vinculaGradeTG(materia, modal) {
-    var buttonTG = area_grade_tg.querySelector("#" + materia.codigo);
+    var buttonTG = null;
+    var grade;
+    if (materia.tipo === "Trabalho de Graduação I") {
+        grade = area_grade_tg[0];
+        buttonTG = area_grade_tg[0].querySelector("#" + materia.codigo);
+    }
+    else if (materia.tipo === "Trabalho de Graduação II") {
+        grade = area_grade_tg[1];
+        buttonTG = area_grade_tg[1].querySelector("#" + materia.codigo);
+    }
+    if (buttonTG) {
+        trocaStatus(buttonTG, materia);
+        // troca o modal da materia optativa para o modal da materia principal
+        buttonTG.setAttribute("data-bs-target", `#${modal.id}`);
+    } else {
+        criaMateria(grade, materia);
+    }
+}
 
-    // a matéria optativa era de outro currilo, então não existe na grade tg
-    if (!buttonTG)
-        return;
+// função que cria um botao, modal, popup e o insere na grade
+function criaMateria(grade, materia) {
+    // cria o span
+    var span = document.createElement("span");
+    span.classList.add("d-inline-block");
+    span.setAttribute("tabindex", "0");
+    span.setAttribute("data-bs-toggle", "tooltip");
+    span.setAttribute("data-bs-title", `${materia.nome}`);
+    span.setAttribute("data-bs-trigger", "hover");
 
-    trocaStatus(buttonTG, materia);
 
-    // troca o modal da materia optativa para o modal da materia principal
-    buttonTG.setAttribute("data-bs-target", `#${modal.id}`);
+    // cria o botao
+    var button = document.createElement("button");
+    button.setAttribute("type", "button");
+    button.classList.add("btn", ("btn-" + materia.situacao), "btn-lg");
+    button.innerHTML = materia.codigo;
+    button.id = materia.codigo;
+    if (materia.situacao == STATUS.NONE)
+        button.disabled = true;
+
+
+    // adiciona o atributo data-status com o status da matéria
+    button.setAttribute("data-status", materia.situacao);
+
+    // aqui cria o atributo data-toggle e data-target para abrir o modal/pop-up
+    button.setAttribute("data-bs-toggle", "modal");
+    button.setAttribute("data-bs-target", `#modal-${materia.codigo}`);
+    criaModal(materia);
+
+    // adiciona o botao ao span
+    span.appendChild(button);
+
+    // insere o span na grade
+    grade.appendChild(span);
+
+    ativaTooltips();
+}
+
+// insere nessa grade todas as materias que nao foram inseridas
+function atualizaGradeOutras(aluno) {
+    var materias = aluno.materias;
+    var materiasArray = Array.from(materias.values());
+
+    // todos os botoes de optativas e TG
+    var buttons = Array.from(area_outras.querySelectorAll("button"));
+
+    materiasArray.forEach((materia) => {
+        // verifica se a materia ja nao esta no documento
+        if (document.querySelector("#" + materia.codigo))
+            return;
+
+        // como nao existe, cria o modal e o botao
+        criaMateria(area_outras, materia);
+        criaModal(materia);
+
+    });
+
+    // faz uma animação de accordeon na grade e após isso troca o display pra flex
+    $(area_outras).collapse('show');
+    area_outras.style.display = "flex";
 }
