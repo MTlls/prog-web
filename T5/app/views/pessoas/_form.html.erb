@@ -1,0 +1,82 @@
+<%= form_with(model: @pessoa, local: true, class: "needs-validation", novalidate: true) do |form| %>
+  <div class="mx-5">
+  <% if @pessoa.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(@pessoa.errors.count, "erro") %> impedem de salvar:</h2>
+      <ul>
+        <% @pessoa.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :nome, class: "form-label" %>
+    <%= form.text_field :nome, class: "form-control #{'is-invalid' if @pessoa.errors[:nome].any?}" %>
+    <% @pessoa.errors.full_messages_for(:nome).each do |message| %>
+      <div class="invalid-feedback"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :email, class: "form-label" %>
+    <%= form.text_field :email, class: "form-control #{'is-invalid' if @pessoa.errors[:email].any?}" %>
+    <% @pessoa.errors.full_messages_for(:email).each do |message| %>
+      <div class="invalid-feedback"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :password, class: "form-label" %>
+    <%= form.password_field :password, class: "form-control #{'is-invalid' if @pessoa.errors[:password].any?}" %>
+    <% @pessoa.errors.full_messages_for(:password).each do |message| %>
+      <div class="invalid-feedback"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :password_confirmation, class: "form-label" %>
+    <%= form.password_field :password_confirmation, class: "form-control #{'is-invalid' if @pessoa.errors[:password_confirmation].any?}" %>
+    <% @pessoa.errors.full_messages_for(:password_confirmation).each do |message| %>
+      <div class="invalid-feedback"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :cpf, class: "form-label" %>
+    <%= form.text_field :cpf, class: "form-control #{'is-invalid' if @pessoa.errors[:cpf].any?}" %>
+    <% @pessoa.errors.full_messages_for(:cpf).each do |message| %>
+      <div class="invalid-feedback"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :telefone, class: "form-label" %>
+    <%= form.text_field :telefone, class: "form-control #{'is-invalid' if @pessoa.errors[:telefone].any?}" %>
+    <% @pessoa.errors.full_messages_for(:telefone).each do |message| %>
+      <div class="invalid-feedback"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :endereco, class: "form-label" %>
+    <%= form.text_field :endereco, class: "form-control #{'is-invalid' if @pessoa.errors[:endereco].any?}" %>
+    <% @pessoa.errors.full_messages_for(:endereco).each do |message| %>
+      <div class="invalid-feedback"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :privilegio, class: "form-label" %>
+    <%= form.select :privilegio, Pessoa.privilegios.keys.map { |k| [k.humanize, k] }, {}, class: "form-select #{'is-invalid' if @pessoa.errors[:privilegio].any?}" %>
+    <% @pessoa.errors.full_messages_for(:privilegio).each do |message| %>
+      <div class="invalid-feedback"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit @pessoa.new_record? ? "Cadastrar" : "Atualizar", class: "btn btn-primary" %>
+  </div>
+  </div>
+<% end %>

@@ -1,0 +1,65 @@
+<%= form_with(model: @livro, local: true, id: "livro_form", class: "needs-validation", novalidate: true) do |form| %>
+  <% if @livro.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(@livro.errors.count, "erro") %> impediram de registrar o livro:</h2>
+      <ul>
+        <% @livro.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class= "mx-5">
+  <div class="mb-3">
+    <%= form.label :titulo, "Título", class: "form-label" %>
+    <%= form.text_field :titulo, id: "livro_titulo", class: "form-control #{'is-invalid' if @livro.errors[:titulo].any?}" %>
+    <% @livro.errors.full_messages_for(:titulo).each do |message| %>
+      <div class="invalid-feedback"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :ano, class: "form-label" %>
+    <%= form.text_field :ano, class: "form-control #{'is-invalid' if @livro.errors[:ano].any?}" %>
+    <% @livro.errors.full_messages_for(:ano).each do |message| %>
+      <div class="invalid-feedback"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :genero, class: "form-label" %>
+    <%= form.text_field :genero, class: "form-control #{'is-invalid' if @livro.errors[:genero].any?}" %>
+    <% @livro.errors.full_messages_for(:genero).each do |message| %>
+      <div class="invalid-feedback"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :quantidade, class: "form-label" %>
+    <%= form.number_field :quantidade, class: "form-control #{'is-invalid' if @livro.errors[:quantidade].any?}" %>
+    <% @livro.errors.full_messages_for(:quantidade).each do |message| %>
+      <div class="invalid-feedback"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :emprestados, "Emprestados", class: "form-label" %>
+    <%= form.text_field :emprestados, class: "form-control #{'is-invalid' if @livro.errors[:emprestados].any?}" %>
+    <% @livro.errors.full_messages_for(:emprestados).each do |message| %>
+      <div class="invalid-feedback"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :autor_nome, "Nome do Autor", class: "form-label" %>
+    <%= form.text_field :autor_nome, id: "autor_nome", class: "form-control #{'is-invalid' if @livro.errors[:autor_nome].any?}" %>
+    <% @livro.errors.full_messages_for(:autor_nome).each do |message| %>
+      <div class="invalid-feedback"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Salvar', class: "btn btn-primary" %>
+  </div>
+  </div>
+<% end %>

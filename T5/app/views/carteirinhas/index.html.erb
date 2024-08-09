@@ -1,0 +1,30 @@
+<h1>Empréstimos</h1>
+
+<table class="table table-striped table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Dono</th>
+      <th scope="col">ID</th>
+      <th scope="col">Livros emprestados</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @carteirinhas.present? %>
+      <% @carteirinhas.each do |carteirinha| %>
+        <tr>
+          <td><%= carteirinha.pessoa.nome %></td>
+          <td><%= carteirinha.id %></td>
+          <td><%= carteirinha.livros.count %></td>
+          <td>
+            <%= link_to 'Livros emprestados', livros_emprestados_path(carteirinha_id: carteirinha) %> | 
+            <%= link_to 'Excluir', carteirinha_path(carteirinha), method: :delete, data: { confirm: 'Tem certeza?' } %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= link_to 'Novo Empréstimo', new_carteirinha_path %>

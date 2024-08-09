@@ -1,0 +1,34 @@
+<h1>Detalhes da Carteirinha</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          <h4>Informações da Carteirinha</h4>
+        </div>
+        <div class="card-body">
+          <p>
+            <strong>ID da carteirinha:</strong>
+            <%= @carteirinha.id %>
+          </p>
+          
+          <p>
+            <strong>Nome:</strong>
+            <%= @carteirinha.pessoa.nome %>
+          </p>
+          
+          <p>
+            <strong>Livros emprestados:</strong>
+            <%= link_to @carteirinha.livros.count, livros_emprestados_path(carteirinha_id: @carteirinha.id), class: 'btn btn-info' %>
+          </p>
+          
+          <div class="d-flex justify-content-between">
+            <%= link_to 'Editar', edit_pessoa_path(@carteirinha.pessoa), class: 'btn btn-warning' %>
+            <%= link_to 'Deletar carteirinha', carteirinha_path(@carteirinha), data: { turbo_method: :delete, turbo_confirm: "Tem certeza?" }, class: 'btn btn-danger' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

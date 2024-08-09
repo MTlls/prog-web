@@ -1,0 +1,10 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <h3 class="card-title"><%= livro.titulo %></h3>
+    <p class="card-text">Ano: <%= livro.ano %></p>
+    <p class="card-text">Gênero: <%= livro.genero %></p>
+    <p class="card-text">Quantidade: <%= livro.quantidade %></p>
+    <p class="card-text">Emprestados: <%= livro.emprestados %></p>
+    <p class="card-text">Autor: <%= link_to livro.autor.nome, autor_path(livro.autor) %></p>
+  </div>
+</div>

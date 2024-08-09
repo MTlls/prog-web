@@ -1,0 +1,90 @@
+<%= form_tag(search_path, method: :get) do %>
+<div class="input-group mt-5">
+  <div class="form-group">
+    <%= text_field_tag :query, @query, id: 'query', class: 'form-control', placeholder: "Digite sua pesquisa..." %>
+  </div>
+  <%= submit_tag "Pesquisar", class: 'btn btn-primary' %>
+  <div class="form-group">
+    <% search_options = [['Autores', 'autores'], ['Livros', 'livros']] %>
+    <% search_options << ['Pessoas', 'pessoas'] if admin? %>
+    <%= select_tag :search_type, options_for_select(search_options, params[:search_type]), id: 'search_type', class: 'form-control', include_blank: "Pesquisar por..." %>
+  </div>
+</div>
+<% end %>
+
+<% if @query.present? %>
+  <h2>Resultados da Pesquisa para "<%= @query %>"</h2>
+<% else %>
+  <h2>Todos os Registros</h2>
+<% end %>
+
+<table class="table table-striped">
+  <% if @results[:autores].any? %>
+    <h2 class="d-flex justify-content-center">Autores</h2>
+    <table class="table table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">Nacionalidade</th>
+          <th scope="col">Livros</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @results[:autores].each do |autor| %> 
+          <tr>
+            <td><%= link_to autor.nome, autor_path(autor) %></td>
+            <td><%= autor.nacionalidade %></td>
+            <td><%= link_to autor.livros.count, livros_emprestados_path(autor_id: autor.id) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+  <% if @results[:livros].any? %>
+    <h2 class="d-flex justify-content-center">Livros</h2>
+    <table class="table table-striped table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Título</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Ano</th>
+        <th scope="col">Gênero</th>
+        <th scope="col">Quantidade</th>
+        <th scope="col">Emprestados</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @results[:livros].each_with_index do |livro| %>
+        <tr>
+          <td><%= link_to livro.titulo, livro_path(livro) %></td>
+          <td><%= livro.autor.nome %></td>
+          <td><%= livro.ano %></td>
+          <td><%= livro.genero %></td>
+          <td><%= livro.quantidade %></td>
+          <td><%= link_to livro.emprestados, carteirinhas_emprestimos_path(livro_id: livro.id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+  <% if @results[:pessoas].any? %>
+    <h2 class="d-flex justify-content-center">Pessoas</h2>
+    <table class="table table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @results[:pessoas].each do |pessoa| %>
+          <tr>
+            <td><%= link_to pessoa.nome, pessoa_path(pessoa) %></td>
+            <td><%= pessoa.email %></td>
+            <td><%= pessoa.privilegio %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</table>

@@ -1,0 +1,21 @@
+<%= form_with model: autor do |form| %>
+  <div>
+    <%= form.label :nome %><br>
+    <%= form.text_field :nome %>
+    <% autor.errors.full_messages_for(:nome).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :nacionalidade %><br>
+    <%= form.text_area :nacionalidade %><br>
+    <% autor.errors.full_messages_for(:nacionalidade).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

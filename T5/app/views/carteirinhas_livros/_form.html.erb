@@ -1,0 +1,50 @@
+<%= form_with(model: @carteirinhas_livro, local: true, class: "needs-validation", novalidate: true) do |form| %>
+  <div class="mx-5">
+  <% if @carteirinhas_livro.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(@carteirinhas_livro.errors.count, "erro") %> impediram de salvar o empréstimo:</h2>
+      <ul>
+        <% @carteirinhas_livro.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :livro_id, "Livro", class: "form-label" %>
+    <%= form.collection_select :livro_id, @livros, :id, :titulo, { prompt: "Selecione um livro" }, class: "form-select #{'is-invalid' if @carteirinhas_livro.errors[:livro_id].any?}" %>
+    <% @carteirinhas_livro.errors.full_messages_for(:livro_id).each do |message| %>
+      <div class="invalid-feedback"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :carteirinha_id, "Carteirinha", class: "form-label" %>
+    <%= form.collection_select :carteirinha_id, @carteirinhas, :id, :id, { prompt: "Selecione uma carteirinha" }, class: "form-select #{'is-invalid' if @carteirinhas_livro.errors[:carteirinha_id].any?}" %>
+    <% @carteirinhas_livro.errors.full_messages_for(:carteirinha_id).each do |message| %>
+      <div class="invalid-feedback"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :data_emprestimo, "Data de empréstimo", class: "form-label" %>
+    <%= form.date_field :data_emprestimo, class: "form-control #{'is-invalid' if @carteirinhas_livro.errors[:data_emprestimo].any?}" %>
+    <% @carteirinhas_livro.errors.full_messages_for(:data_emprestimo).each do |message| %>
+      <div class="invalid-feedback"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :data_devolucao, "Data de devolução", class: "form-label" %>
+    <%= form.date_field :data_devolucao, class: "form-control #{'is-invalid' if @carteirinhas_livro.errors[:data_devolucao].any?}" %>
+    <% @carteirinhas_livro.errors.full_messages_for(:data_devolucao).each do |message| %>
+      <div class="invalid-feedback"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Salvar", class: "btn btn-primary" %>
+  </div>
+  </div>
+<% end %>

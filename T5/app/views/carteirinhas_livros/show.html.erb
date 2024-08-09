@@ -1,0 +1,28 @@
+<!-- app/views/carteirinhas_livros/show.html.erb -->
+<p>
+  <strong>Livro:</strong>
+  <%= @carteirinhas_livro.livro.titulo %>
+</p>
+
+<p>
+  <strong>Pessoa que emprestou:</strong>
+  <%= @carteirinhas_livro.carteirinha.pessoa.nome %>
+</p>
+
+<p>
+  <strong>Carteirinha:</strong>
+  <%= @carteirinhas_livro.carteirinha.id %>
+</p>
+
+<p>
+  <strong>Data do Empréstimo:</strong>
+  <%= @carteirinhas_livro.data_emprestimo.strftime('%d/%m/%Y')  %>
+</p>
+
+<p>
+  <strong>Data de Devolução:</strong>
+  <%= @carteirinhas_livro.data_devolucao.strftime('%d/%m/%Y')  %>
+</p>
+
+<%= link_to 'Editar', edit_carteirinhas_livro_path(@carteirinhas_livro) %> |
+<%= link_to 'Devolver e Remover', carteirinhas_livro_path(@carteirinhas_livro), data: {turbo_method: :delete, turbo_confirm: "Tem certeza?" } %>

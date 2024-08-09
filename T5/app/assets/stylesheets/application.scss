@@ -1,0 +1,42 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require jquery-ui
+ */
+@import "bootstrap";
+
+.navbar-nav {
+  .nav-item {
+
+    // Define o fundo da linha quando o link está em hover
+    &:hover {
+      background-color: #e9ecef; // Cor de fundo ao passar o mouse
+    }
+
+    .nav-link {
+      display: block; // Faz com que o link ocupe toda a área do item
+      padding: 0.5rem 1rem; // Ajusta o espaçamento interno conforme necessário
+      color: #000; // Cor do texto
+      transition: background-color 0.3s, color 0.3s; // Transição suave
+
+      &:hover {
+        color: #0056b3; // Cor do texto ao passar o mouse
+      }
+    }
+  }
+}
+
+.bg-secundario {
+  background-color: #efcfc0 !important;
+}

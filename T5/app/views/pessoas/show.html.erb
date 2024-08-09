@@ -1,0 +1,13 @@
+<%= render "show", pessoa: @pessoa %>
+<%
+=begin%>
+ <p>Autor: <%= link_to @pessoa.nome, autor_path(@pessoa.autor)%></p> 
+<%
+=end%>
+<ul>
+  <li><%= link_to "Edit", edit_pessoa_path(@pessoa) %></li>
+  <li><%= link_to "Excluir", pessoa_path(@pessoa), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Tem certeza?"
+                  } %></li>
+</ul>

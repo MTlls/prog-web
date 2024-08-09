@@ -1,0 +1,8 @@
+<%= render "show", livro: @livro %>
+<ul>
+  <li><%= link_to "Edit", edit_livro_path(@livro) %></li>
+  <li><%= link_to "Excluir", livro_path(@livro), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Tem certeza?"
+                  } %></li>
+</ul>

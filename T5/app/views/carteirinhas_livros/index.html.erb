@@ -1,0 +1,33 @@
+<h1>Empréstimos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Livro</th>
+      <th>Carteirinha</th>
+      <th>Data de Empréstimo</th>
+      <th>Data de Devolução</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if @carteirinhas_livros.present? %>
+      <% @carteirinhas_livros.each do |carteirinhas_livro| %>
+        <tr>
+          <td><%= carteirinhas_livro.livro.titulo %></td>
+          <td><%= carteirinhas_livro.carteirinha.id %></td>
+          <td><%= carteirinhas_livro.data_emprestimo.strftime('%d/%m/%Y') %></td>
+          <td><%= carteirinhas_livro.data_devolucao.strftime('%d/%m/%Y') %></td>
+          <td>
+            <%= link_to 'Mostrar', carteirinhas_livro_path(carteirinhas_livro) %> |
+            <%= link_to 'Editar', edit_carteirinhas_livro_path(carteirinhas_livro) %> |
+            <%= link_to 'Excluir', carteirinhas_livro_path(carteirinhas_livro), method: :delete, data: { confirm: 'Tem certeza?' } %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Novo Empréstimo', new_carteirinhas_livro_path %>

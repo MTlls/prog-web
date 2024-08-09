@@ -1,0 +1,2 @@
+module CarteirinhaHelper
+end

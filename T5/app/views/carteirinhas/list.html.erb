@@ -1,0 +1,24 @@
+<%
+=begin%>
+    isso é para listar as carteirinhas que emprestaram um certo livro recebidos pelo controller, em uma lista de livros, com um link para a página de detalhes de cada livro, a lista é horizontal, até atingir o limite da tela, depois passa para a linha de baixo
+
+<%
+=end%>
+<h1>Carteirinhas</h1>
+
+<table class="table table-striped table-hover">
+  <thead class="thead-dark">
+    <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">ID</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @carteirinhas.each do |carteirinha| %>
+        <tr>
+            <td><%= link_to carteirinha.pessoa.nome, carteirinha_path(carteirinha.pessoa) %></td>
+            <td><%= carteirinha.id %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>

@@ -1,0 +1,32 @@
+
+<h1>Livros emprestados</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Gênero</th>
+      <th>Ano</th>
+      <th>Autor</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if @carteirinhas_livros.present? %>
+      <% @carteirinhas_livros.each do |carteirinha_livro| %>
+        <tr>
+          <td><%= carteirinha_livro.livro.titulo %></td>
+          <td><%= carteirinha_livro.livro.genero %></td>
+          <td><%= carteirinha_livro.livro.ano %></td>
+          <td><%= carteirinha_livro.livro.autor.nome %></td>
+          <td>
+            <%= link_to 'Detalhes', livro_path(carteirinha_livro.livro) %> |
+            <%= link_to 'Editar', edit_livro_path(carteirinha_livro.livro) %> |
+            <%= link_to 'Excluir empréstimo', carteirinha_livro_path(carteirinha_livro), data: { turbo_method: :delete, turbo_confirm: "Tem certeza?"} %></li>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+</table>

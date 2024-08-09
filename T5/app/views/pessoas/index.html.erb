@@ -1,0 +1,11 @@
+<h1>Pessoas</h1>
+
+<ul>
+  <% @pessoas.each do |pessoa| %>
+    <li>
+        <%= link_to pessoa.nome, pessoa %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Inserir nova pessoa", new_pessoa_path %>
