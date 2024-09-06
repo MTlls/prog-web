@@ -1,24 +1,28 @@
-# README
+# Sistema de Biblioteca
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Descrição
 
-Things you may want to cover:
+Este projeto foi desenvolvido como trabalho final da disciplina de Programação Web. O sistema foi implementado em Ruby on Rails e possui funcionalidades de login, com diferentes permissões para administradores e usuários comuns.
 
-* Ruby version
+## Funcionalidades
 
-* System dependencies
+- **Login**: Permite o login de usuários e administradores.
+- **Gerenciamento pelo Administrador**: O administrador pode realizar o CRUD (criar, ler, atualizar e deletar) para:
+  - **Carteirinhas**
+  - **Pessoas**
+  - **Autores**
+  - **Livros**
+- **Relações**: Implementa relações 1:1, 1:N e N:N entre as entidades.
 
-* Configuration
+## Instruções para Execução
 
-* Database creation
+Para rodar os testes:
 
-* Database initialization
+```bash
+rake test
+```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Para rodar o servidor localmente:
+```
+rails server
+```
